@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qazi Auto Parts | CEO Muhammad Arif | Yiwu China</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+        }
+
+        .gold-text {
+            color: #d4af37;
+        }
+
+        .gold-bg {
+            background-color: #d4af37;
+        }
+
+        .gold-border {
+            border-color: #d4af37;
+        }
+
+        /* Premium Filter Buttons */
+        .filter-btn {
+            cursor: pointer;
+            padding: 12px 15px;
+            border: 2px solid #222;
+            border-radius: 12px;
+            background: #111;
+            transition: 0.4s;
+            min-width: 90px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .filter-btn {
+                padding: 15px;
+                min-width: 110px;
+            }
+        }
+
+        .filter-btn:hover {
+            border-color: #d4af37;
+        }
+
+        .filter-btn.active {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.15);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .filter-btn.active {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Colorful Logo Display */
+        .logo-box {
+            background: #ffffff;
+            border: 2px solid #222;
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.4s;
+            height: 140px;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (min-width: 768px) {
+            .logo-box {
+                padding: 20px;
+                border-radius: 20px;
+                height: 160px;
+            }
+        }
+
+        .logo-box:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .logo-box:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+            }
+        }
+
+        .brand-logo {
+            width: 80px;
+            height: 60px;
+            object-fit: contain;
+            filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.1));
+        }
+
+        @media (min-width: 768px) {
+            .brand-logo {
+                width: 100px;
+                height: 75px;
+            }
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            letter-spacing: -0.5px;
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+        }
+
+        .about-card {
+            background: linear-gradient(145deg, #111, #000);
+            border: 2px solid #d4af37;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .about-card {
+                border-radius: 40px;
+            }
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #111;
+            border-top: 2px solid #d4af37;
+            z-index: 100;
+            padding: 10px 0;
+        }
+
+        @media (max-width: 767px) {
+            .mobile-nav {
+                display: flex;
+            }
+        }
+
+        .nav-icon {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.75rem;
+            padding: 5px 0;
+        }
+
+        .nav-icon.active {
+            color: #d4af37;
+        }
+
+        .nav-icon i {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+
+        /* Product Cards */
+        .product-card {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            background: black;
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .product-card {
+                width: 17vw;
+                min-width: 200px;
+                border-radius: 20px;
+            }
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .product-image {
+            height: 150px;
+            background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .product-image {
+                height: 180px;
+            }
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.5s forwards;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 99;
+            text-decoration: none;
+        }
+
+        @media (min-width: 768px) {
+            .whatsapp-float {
+                bottom: 30px;
+                right: 30px;
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="pb-16 md:pb-0">
+
+    <!-- Desktop Navigation -->
+    <nav
+        class="bg-black sticky top-0 z-50 px-4 md:px-8 py-3 md:py-5 flex items-center justify-center sm:justify-between gap-10 border-b gold-border/30 h-[20vh]">
+        <div class="flex items-center gap-2 md:gap-3">
+            <img src="./Assets/logo.jpg" alt="Logo" class="text-center w-[75px] sm:w-[100px]">
+        </div>
+        <div class="hidden md:flex gap-4">
+            <a href="https://wa.me/8615158939407"
+                class="gold-bg text-black px-6 md:px-8 py-2 md:py-3 font-bold md:font-black text-xs rounded-full hover:bg-white transition uppercase shadow-lg shadow-yellow-600/20">
+                Chat with CEO
+            </a>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <a href="#home" class="nav-icon active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#brands" class="nav-icon">
+            <i class="fas fa-flag"></i>
+            <span>Brands</span>
+        </a>
+        <a href="#products" class="nav-icon">
+            <i class="fas fa-car"></i>
+            <span>Products</span>
+        </a>
+        <a href="#about" class="nav-icon">
+            <i class="fas fa-info-circle"></i>
+            <span>About</span>
+        </a>
+        <a href="tel:+8615158939407" class="nav-icon">
+            <i class="fas fa-phone"></i>
+            <span>Call</span>
+        </a>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/8615158939407" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-10 md:py-24 bg-[#0a0a0a] text-center px-4 md:px-6 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 md:opacity-10 pointer-events-none">
+            <i class="fas fa-car-side text-8xl md:text-[20rem] absolute -left-10 md:-left-20 top-0"></i>
+        </div>
+        <h2 class="section-title text-white mb-4">
+            The Global Hub for <span class="gold-text">Every Spare Part</span>
+        </h2>
+        <p class="text-gray-500 text-xs md:text-sm uppercase tracking-[0.3em] md:tracking-[0.6em] font-bold">
+            China • USA • Japan • Germany • Korea • France • Italy
+        </p>
+
+        <!-- Mobile Call to Action -->
+        <div class="mt-8 md:hidden">
+            <a href="https://wa.me/8615158939407"
+                class="gold-bg text-black px-6 py-3 font-bold text-sm rounded-full hover:bg-white transition uppercase shadow-lg shadow-yellow-600/20 inline-block">
+                <i class="fab fa-whatsapp mr-2"></i> Chat with CEO
+            </a>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section id="brands" class="container pt-10 mx-auto px-4 md:px-6 py-8 md:py-12">
+        <h3 class="text-2xl md:text-2xl font-black uppercase italic tracking-tighter text-center mb-6 md:mb-8">
+            Our <span class="gold-text">Consumers</span>
+        </h3>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-10 md:mb-16 overflow-x-auto pb-2">
+            <div class="filter-btn active" onclick="updateBrands('china', this)">
+                <img src="https://flagcdn.com/w80/cn.png" class="w-8 md:w-10 mx-auto mb-1 md:mb-2 rounded shadow-md">
+                <span class="text-[9px] md:text-[10px] font-black uppercase text-white tracking-widest">China</span>
+            </div>
+            <div class="filter-btn" onclick="updateBrands('usa', this)">
+                <img src="https://flagcdn.com/w80/us.png" class="w-8 md:w-10 mx-auto mb-1 md:mb-2 rounded shadow-md">
+                <span class="text-[9px] md:text-[10px] font-black uppercase text-white tracking-widest">USA</span>
+            </div>
+            <div class="filter-btn" onclick="updateBrands('japan', this)">
+                <img src="https://flagcdn.com/w80/jp.png" class="w-8 md:w-10 mx-auto mb-1 md:mb-2 rounded shadow-md">
+                <span class="text-[9px] md:text-[10px] font-black uppercase text-white tracking-widest">Japan</span>
+            </div>
+            <div class="filter-btn" onclick="updateBrands('germany', this)">
+                <img src="https://flagcdn.com/w80/de.png" class="w-8 md:w-10 mx-auto mb-1 md:mb-2 rounded shadow-md">
+                <span class="text-[9px] md:text-[10px] font-black uppercase text-white tracking-widest">Germany</span>
+            </div>
+            <div class="filter-btn" onclick="updateBrands('korea', this)">
+                <img src="https://flagcdn.com/w80/kr.png" class="w-8 md:w-10 mx-auto mb-1 md:mb-2 rounded shadow-md">
+                <span class="text-[9px] md:text-[10px] font-black uppercase text-white tracking-widest">S. Korea</span>
+            </div>
+            <div class="filter-btn" onclick="updateBrands('france', this)">
+                <img src="https://flagcdn.com/w80/fr.png" class="w-8 md:w-10 mx-auto mb-1 md:mb-2 rounded shadow-md">
+                <span class="text-[9px] md:text-[10px] font-black uppercase text-white tracking-widest">France</span>
+            </div>
+            <div class="filter-btn" onclick="updateBrands('machinery', this)">
+                <div class="h-8 md:h-10 flex items-center justify-center mb-1 gold-text text-2xl md:text-3xl">
+                    <i class="fas fa-truck-monster"></i>
+                </div>
+                <span class="text-[9px] md:text-[10px] font-black uppercase gold-text tracking-widest">Machinery</span>
+            </div>
+        </div>
+
+        <!-- Brand Grid -->
+        <div id="brandGrid"
+            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6 lg:gap-8 mb-12 md:mb-20">
+            <!-- Brands will be loaded here -->
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="px-4 md:px-6 py-8 md:py-12">
+        <h3 class="text-xl md:text-2xl font-black uppercase italic tracking-tighter text-center mb-8 md:mb-12">
+            Featured <span class="gold-text">Products</span>
+        </h3>
+
+        <div class="flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center justify-center">
+            <!-- Product 1 -->
+            <div class="product-card opacity-0 translate-y-10 transition-all duration-700 ease-out">
+                <div class="product-image">
+                    <div class="w-full h-full bg-black flex items-center justify-center">
+                        <img src="./Assets/break-pad.jpg" alt="">
+                    </div>
+                </div>
+                <div class="py-4 md:py-5 flex flex-col gap-2 items-center text-center px-4">
+                    <p class="text-[#D4AF37] text-xs md:text-[10px] font-bold uppercase tracking-tighter mb-1">
+                        Genuine Spare Part
+                    </p>
+                    <h4 class="text-lg md:text-xl font-extrabold text-[#D4AF37] italic">Brake Pad</h4>
+                    <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Pad"
+                        target="_blank">
+                        <button
+                            class="gold-bg text-black font-extrabold px-4 md:px-6 py-2 md:py-2.5 italic text-sm md:text-base rounded uppercase tracking-tighter hover:bg-white transition">
+                            Order Now
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card opacity-0 translate-y-10 transition-all duration-700 ease-out">
+                <div class="product-image">
+                    <div class="w-full h-full bg-black flex items-center justify-center">
+                        <img src="./Assets/brake-system.jpg" alt="">
+                    </div>
+                </div>
+                <div class="py-4 md:py-5 flex flex-col gap-2 items-center text-center px-4">
+                    <p class="text-[#D4AF37] text-xs md:text-[10px] font-bold uppercase tracking-tighter mb-1">
+                        Genuine Spare Part
+                    </p>
+                    <h4 class="text-lg md:text-xl font-extrabold text-[#D4AF37] italic">Brake System</h4>
+                    <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20System"
+                        target="_blank">
+                        <button
+                            class="gold-bg text-black font-extrabold px-4 md:px-6 py-2 md:py-2.5 italic text-sm md:text-base rounded uppercase tracking-tighter hover:bg-white transition">
+                            Order Now
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card opacity-0 translate-y-10 transition-all duration-700 ease-out">
+                <div class="product-image">
+                    <div class="w-full h-full bg-black flex items-center justify-center">
+                        <img src="./Assets/fuel-pump.jpg" alt="">
+                    </div>
+                </div>
+                <div class="py-4 md:py-5 flex flex-col gap-2 items-center text-center px-4">
+                    <p class="text-[#D4AF37] text-xs md:text-[10px] font-bold uppercase tracking-tighter mb-1">
+                        Genuine Spare Part
+                    </p>
+                    <h4 class="text-lg md:text-xl font-extrabold text-[#D4AF37] italic">Fuel Pump</h4>
+                    <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Pump"
+                        target="_blank">
+                        <button
+                            class="gold-bg text-black font-extrabold px-4 md:px-6 py-2 md:py-2.5 italic text-sm md:text-base rounded uppercase tracking-tighter hover:bg-white transition">
+                            Order Now
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card opacity-0 translate-y-10 transition-all duration-700 ease-out hidden md:block">
+                <div class="product-image">
+                    <div class="w-full h-full bg-black flex items-center justify-center">
+                        <img src="./Assets/suspension.png" alt="">
+                    </div>
+                </div>
+                <div class="py-4 md:py-5 flex flex-col gap-2 items-center text-center px-4">
+                    <p class="text-[#D4AF37] text-xs md:text-[10px] font-bold uppercase tracking-tighter mb-1">
+                        Genuine Spare Part
+                    </p>
+                    <h4 class="text-lg md:text-xl font-extrabold text-[#D4AF37] italic">Suspension</h4>
+                    <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Suspension" target="_blank">
+                        <button
+                            class="gold-bg text-black font-extrabold px-4 md:px-6 py-2 md:py-2.5 italic text-sm md:text-base rounded uppercase tracking-tighter hover:bg-white transition">
+                            Order Now
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View More Products Button (Mobile) -->
+        <div class="mt-8 text-center md:hidden">
+            <button onclick="showMoreProducts()"
+                class="border-2 gold-border text-gold px-6 py-2 rounded-full font-bold text-sm hover:bg-yellow-900/20 transition">
+                View More Products
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-card container mx-auto px-4 md:px-8 lg:px-10 py-6 md:py-8 lg:py-10 my-8 md:my-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+            <div>
+                <h3 class="gold-text text-2xl md:text-3xl lg:text-4xl font-black uppercase italic mb-6 md:mb-8">
+                    About Qazi Auto Parts
+                </h3>
+                <div class="space-y-4 md:space-y-6 text-gray-300 text-sm md:text-base lg:text-lg leading-relaxed">
+                    <p>Welcome to Qazi Auto Parts, your premier global partner in the automotive and heavy machinery
+                        spare parts industry. Based in the world's largest trading hub, Yiwu, China, we bridge the gap
+                        between high-quality manufacturing and global demand.</p>
+                    <p>Under the visionary leadership of CEO Muhammad Arif, we have established a robust network that
+                        ensures genuine quality, competitive pricing, and lightning-fast global shipping. Whether it's a
+                        luxury sedan or a massive excavator, we have the parts you need.</p>
+                </div>
+            </div>
+            <div class="bg-black/50 rounded-2xl md:rounded-3xl border gold-border/20 p-6 md:p-8">
+                <h4
+                    class="text-white text-lg md:text-xl font-black uppercase italic mb-4 md:mb-6 border-b gold-border pb-2 inline-block">
+                    Company Credentials
+                </h4>
+                <ul class="space-y-4 md:space-y-6">
+                    <li class="flex items-center gap-3 md:gap-4">
+                        <i class="fas fa-user-tie gold-text text-xl md:text-2xl"></i>
+                        <div>
+                            <p class="text-[9px] md:text-[10px] uppercase text-gray-500 font-bold">CEO / Founder</p>
+                            <p class="text-white font-bold text-sm md:text-base">Muhammad Arif | Mike</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-3 md:gap-4">
+                        <i class="fas fa-map-marker-alt gold-text text-xl md:text-2xl"></i>
+                        <div>
+                            <p class="text-[9px] md:text-[10px] uppercase text-gray-500 font-bold">Head Office</p>
+                            <p class="text-white font-bold text-xs md:text-sm">Shop 68470-68471, 8th Street, Gate 103,
+                                Dist. 5, Yiwu, China</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-3 md:gap-4">
+                        <i class="fab fa-whatsapp gold-text text-xl md:text-2xl"></i>
+                        <div>
+                            <p class="text-[9px] md:text-[10px] uppercase text-gray-500 font-bold">Direct Inquiry</p>
+                            <p class="text-white font-bold text-sm md:text-base">+86 15158939407 | +86 18550563525</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-3 md:gap-4">
+                        <i class="fas fa-envelope gold-text text-xl md:text-2xl"></i>
+                        <div>
+                            <p class="text-[9px] md:text-[10px] uppercase text-gray-500 font-bold">Email</p>
+                            <p class="text-white font-bold text-xs md:text-sm">qaziautoparts390@gmail.com</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 md:py-10 text-center border-t border-white/5">
+        <p class="text-[9px] md:text-[10px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-gray-600">
+            Qazi Auto Parts • Global Excellence • 2024
+        </p>
+        <p class="text-xs md:text-sm text-gray-500 mt-2">
+            Premium Auto Parts Supplier from Yiwu, China
+        </p>
+    </footer>
+
+    <script>
+        const data = {
+            china: [
+                { name: "BYD", img: "https://www.carlogos.org/car-logos/byd-logo.png" },
+                { name: "Geely", img: "https://www.carlogos.org/car-logos/geely-logo.png" },
+                { name: "Chery", img: "https://www.carlogos.org/car-logos/chery-logo.png" },
+                { name: "Haval", img: "https://www.carlogos.org/car-logos/haval-logo.png" },
+                { name: "Changan", img: "https://www.carlogos.org/car-logos/changan-logo.png" },
+                { name: "MG", img: "https://www.carlogos.org/car-logos/mg-logo.png" },
+                { name: "GAC", img: "https://www.carlogos.org/car-logos/gac-logo.png" },
+                { name: "Dongfeng", img: "https://www.carlogos.org/car-logos/dongfeng-logo.png" },
+                { name: "Faw", img: "https://www.carlogos.org/car-logos/faw-logo.png" },
+                { name: "Wuling", img: "https://www.carlogos.org/car-logos/wuling-logo.png" }
+            ],
+            usa: [
+                { name: "Tesla", img: "https://www.carlogos.org/car-logos/tesla-logo.png" },
+                { name: "Ford", img: "https://www.carlogos.org/car-logos/ford-logo.png" },
+                { name: "Chevrolet", img: "https://www.carlogos.org/car-logos/chevrolet-logo.png" },
+                { name: "Jeep", img: "https://www.carlogos.org/car-logos/jeep-logo.png" },
+                { name: "Cadillac", img: "https://www.carlogos.org/car-logos/cadillac-logo.png" },
+                { name: "GMC", img: "https://www.carlogos.org/car-logos/gmc-logo.png" },
+                { name: "Dodge", img: "https://www.carlogos.org/car-logos/dodge-logo.png" },
+                { name: "Chrysler", img: "https://www.carlogos.org/car-logos/chrysler-logo.png" },
+                { name: "RAM", img: "https://www.carlogos.org/car-logos/ram-logo.png" },
+                { name: "Lincoln", img: "https://www.carlogos.org/car-logos/lincoln-logo.png" }
+            ],
+            japan: [
+                { name: "Toyota", img: "https://www.carlogos.org/car-logos/toyota-logo.png" },
+                { name: "Honda", img: "https://www.carlogos.org/car-logos/honda-logo.png" },
+                { name: "Nissan", img: "https://www.carlogos.org/car-logos/nissan-logo.png" },
+                { name: "Mitsubishi", img: "https://www.carlogos.org/car-logos/mitsubishi-logo.png" },
+                { name: "Mazda", img: "https://www.carlogos.org/car-logos/mazda-logo.png" },
+                { name: "Suzuki", img: "https://www.carlogos.org/car-logos/suzuki-logo.png" },
+                { name: "Subaru", img: "https://www.carlogos.org/car-logos/subaru-logo.png" },
+                { name: "Lexus", img: "https://www.carlogos.org/car-logos/lexus-logo.png" },
+                { name: "Isuzu", img: "https://www.carlogos.org/car-logos/isuzu-logo.png" }
+            ],
+            germany: [
+                { name: "Mercedes-Benz", img: "https://www.carlogos.org/car-logos/mercedes-benz-logo.png" },
+                { name: "BMW", img: "https://www.carlogos.org/car-logos/bmw-logo.png" },
+                { name: "Audi", img: "https://www.carlogos.org/car-logos/audi-logo.png" },
+                { name: "Volkswagen", img: "https://www.carlogos.org/car-logos/volkswagen-logo.png" },
+                { name: "Porsche", img: "https://www.carlogos.org/car-logos/porsche-logo.png" },
+                { name: "Opel", img: "https://www.carlogos.org/car-logos/opel-logo.png" }
+            ],
+            korea: [
+                { name: "Hyundai", img: "https://www.carlogos.org/car-logos/hyundai-logo.png" },
+                { name: "Kia", img: "https://www.carlogos.org/car-logos/kia-logo.png" },
+                { name: "SsangYong", img: "https://www.carlogos.org/car-logos/ssangyong-logo.png" },
+                { name: "Daewoo", img: "https://www.carlogos.org/car-logos/daewoo-logo.png" },
+                { name: "Genesis", img: "https://www.carlogos.org/car-logos/genesis-logo.png" }
+            ],
+            france: [
+                { name: "Renault", img: "https://www.carlogos.org/car-logos/renault-logo.png" },
+                { name: "Peugeot", img: "https://www.carlogos.org/car-logos/peugeot-logo.png" },
+                { name: "Citroen", img: "https://www.carlogos.org/car-logos/citroen-logo.png" },
+                { name: "Bugatti", img: "https://www.carlogos.org/car-logos/bugatti-logo.png" }
+            ],
+            machinery: [
+                { name: "Caterpillar", img: "https://logos-world.net/wp-content/uploads/2021/10/Caterpillar-Logo.png" },
+                { name: "Komatsu", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Komatsu_Logo.svg/1024px-Komatsu_Logo.svg.png" },
+                { name: "JCB Heavy", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/JCB_Logo.svg/1024px-JCB_Logo.svg.png" },
+                { name: "Sany Group", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Sany_logo.svg/1200px-Sany_logo.svg.png" },
+                { name: "Volvo", img: "https://logos-world.net/wp-content/uploads/2022/01/Volvo-Logo.png" },
+                { name: "Hitachi", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Hitachi_Logo.svg/1200px-Hitachi_Logo.svg.png" },
+                { name: "Bobcat", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Bobcat_Logo.svg/2560px-Bobcat_Logo.svg.png" },
+                { name: "Doosan", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Doosan_logo.svg/2560px-Doosan_logo.svg.png" }
+            ]
+        };
+
+        function updateBrands(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const grid = document.getElementById('brandGrid');
+            grid.innerHTML = "";
+            data[cat].forEach(b => {
+                grid.innerHTML += `
+                    <div class="logo-box animate-fadeIn">
+                        <img src="${b.img}" class="brand-logo" onerror="this.src='https://via.placeholder.com/100x60?text=${b.name}'">
+                        <p class="text-[10px] md:text-[11px] font-black uppercase text-black mt-2 md:mt-4 text-center leading-tight tracking-tighter">${b.name}</p>
+                    </div>`;
+            });
+        }
+
+        function showMoreProducts() {
+            alert('For more products, please contact us directly on WhatsApp: +86 15158939407');
+        }
+
+        // Mobile navigation active state
+        document.querySelectorAll('.nav-icon').forEach(icon => {
+            icon.addEventListener('click', function () {
+                document.querySelectorAll('.nav-icon').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Initialize with China brands
+        window.onload = () => updateBrands('china', document.querySelector('.filter-btn.active'));
+
+        // Animation
+        const productCards = document.querySelectorAll('.product-card');
+
+        const productObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    productObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.25 });
+
+        productCards.forEach(card => productObserver.observe(card));
+    </script>
+</body>
+
+</html>
