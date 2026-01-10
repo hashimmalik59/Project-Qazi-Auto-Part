@@ -78,18 +78,6 @@
             }
         }
 
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
         .animate-fadeInUp {
             animation: fadeInUp 0.6s ease-out forwards;
         }
@@ -100,10 +88,6 @@
 
         .animate-pulse {
             animation: pulse 2s infinite;
-        }
-
-        .animate-slideInRight {
-            animation: slideInRight 0.6s ease-out forwards;
         }
 
         /* Header Styles */
@@ -119,13 +103,9 @@
             border: 1px solid #333;
             border-radius: 15px;
             transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .product-card.visible {
             opacity: 1;
             transform: translateY(0);
+            overflow: hidden;
         }
 
         .product-card:hover {
@@ -141,16 +121,12 @@
             border-radius: 15px;
             padding: 20px;
             transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
+            opacity: 1;
+            transform: translateY(0);
             display: flex;
             flex-direction: column;
             height: 100%;
-        }
-
-        .catalog-card.visible {
-            opacity: 1;
-            transform: translateY(0);
+            overflow: hidden;
         }
 
         .catalog-card:hover {
@@ -171,11 +147,6 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .brand-card.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -244,13 +215,6 @@
             border-top: 2px solid var(--gold);
             z-index: 1000;
             padding: 10px 0;
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .mobile-nav {
-                display: flex;
-            }
         }
 
         .nav-icon {
@@ -372,6 +336,49 @@
                 transform: rotate(360deg);
             }
         }
+
+        /* Product Image Container */
+        .product-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 12px 12px 0 0;
+            background: #222;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        /* Remove hamburger menu on mobile */
+        #mobileMenuBtn {
+            display: none;
+        }
+
+        /* Always show mobile nav on mobile */
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: flex;
+            }
+
+            .header nav {
+                display: none;
+            }
+        }
+
+        /* Desktop styles */
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -407,15 +414,10 @@
                     <i class="fab fa-whatsapp mr-2"></i> WhatsApp
                 </a>
             </nav>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobileMenuBtn" class="md:hidden text-2xl gold-text">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </header>
 
-    <!-- Mobile Navigation Menu -->
+    <!-- Mobile Navigation Menu (Always visible on mobile) -->
     <div class="mobile-nav">
         <a href="#" onclick="showPage('home')" class="nav-icon active">
             <i class="fas fa-home"></i>
@@ -558,60 +560,64 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Product 1 -->
-                    <div class="product-card delay-100">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1563720223482-d9e48b4844c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Brake Pads">
+                        </div>
                         <div class="p-6">
-                            <div class="w-16 h-16 gold-bg rounded-full flex items-center justify-center mb-6">
-                                <i class="fas fa-car-crash text-2xl text-black"></i>
-                            </div>
                             <h3 class="text-xl font-bold mb-3">Brake Pads</h3>
                             <p class="text-gray-400 mb-6">High-performance brake pads for all vehicle types</p>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Pads"
-                                class="gold-bg text-black px-6 py-2.5 rounded-lg font-bold inline-block hover:bg-yellow-500 transition-all duration-300">
+                                class="gold-bg text-black px-6 py-2.5 rounded-lg font-bold inline-block hover:bg-yellow-500 transition-all duration-300 w-full text-center">
                                 Order Now
                             </a>
                         </div>
                     </div>
 
                     <!-- Product 2 -->
-                    <div class="product-card delay-200">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1632855415417-7f1c8ac2179f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Fuel Pumps">
+                        </div>
                         <div class="p-6">
-                            <div class="w-16 h-16 gold-bg rounded-full flex items-center justify-center mb-6">
-                                <i class="fas fa-gas-pump text-2xl text-black"></i>
-                            </div>
                             <h3 class="text-xl font-bold mb-3">Fuel Pumps</h3>
                             <p class="text-gray-400 mb-6">Reliable fuel pumps for optimal engine performance</p>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Pumps"
-                                class="gold-bg text-black px-6 py-2.5 rounded-lg font-bold inline-block hover:bg-yellow-500 transition-all duration-300">
+                                class="gold-bg text-black px-6 py-2.5 rounded-lg font-bold inline-block hover:bg-yellow-500 transition-all duration-300 w-full text-center">
                                 Order Now
                             </a>
                         </div>
                     </div>
 
                     <!-- Product 3 -->
-                    <div class="product-card delay-300">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1610641817670-db5e8d36c9cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Suspension Kits">
+                        </div>
                         <div class="p-6">
-                            <div class="w-16 h-16 gold-bg rounded-full flex items-center justify-center mb-6">
-                                <i class="fas fa-cogs text-2xl text-black"></i>
-                            </div>
                             <h3 class="text-xl font-bold mb-3">Suspension Kits</h3>
                             <p class="text-gray-400 mb-6">Complete suspension systems for smooth rides</p>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Suspension%20Kits"
-                                class="gold-bg text-black px-6 py-2.5 rounded-lg font-bold inline-block hover:bg-yellow-500 transition-all duration-300">
+                                class="gold-bg text-black px-6 py-2.5 rounded-lg font-bold inline-block hover:bg-yellow-500 transition-all duration-300 w-full text-center">
                                 Order Now
                             </a>
                         </div>
                     </div>
 
                     <!-- Product 4 -->
-                    <div class="product-card delay-400">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Oil Filters">
+                        </div>
                         <div class="p-6">
-                            <div class="w-16 h-16 gold-bg rounded-full flex items-center justify-center mb-6">
-                                <i class="fas fa-filter text-2xl text-black"></i>
-                            </div>
                             <h3 class="text-xl font-bold mb-3">Oil Filters</h3>
                             <p class="text-gray-400 mb-6">Premium oil filters for engine protection</p>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Oil%20Filters"
-                                class="gold-bg text-black px-6 py-2.5 rounded-lg font-bold inline-block hover:bg-yellow-500 transition-all duration-300">
+                                class="gold-bg text-black px-6 py-2.5 rounded-lg font-bold inline-block hover:bg-yellow-500 transition-all duration-300 w-full text-center">
                                 Order Now
                             </a>
                         </div>
@@ -706,10 +712,13 @@
                     <h2 class="category-title text-3xl font-bold mb-10">Filters & Fluids</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-filter text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Oil Filter">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Oil Filter</h3>
-                                <p class="text-gray-400">Premium quality oil filters</p>
+                                <p class="text-gray-400 mb-4">Premium quality oil filters for all vehicle types</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Oil%20Filter"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -718,10 +727,14 @@
                         </div>
 
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-wind text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1593941707882-a5bba53306fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Air Filter">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Air Filter</h3>
-                                <p class="text-gray-400">High-performance air filters</p>
+                                <p class="text-gray-400 mb-4">High-performance air filters for better engine breathing
+                                </p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Air%20Filter"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -730,10 +743,13 @@
                         </div>
 
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-gas-pump text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1632855415417-7f1c8ac2179f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Fuel Filter">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Fuel Filter</h3>
-                                <p class="text-gray-400">Efficient fuel filters</p>
+                                <p class="text-gray-400 mb-4">Efficient fuel filters for clean fuel delivery</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Filter"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -742,10 +758,13 @@
                         </div>
 
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-bolt text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1605050835779-b0c2c1d1f3b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Spark Plugs">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Spark Plugs</h3>
-                                <p class="text-gray-400">High-quality spark plugs</p>
+                                <p class="text-gray-400 mb-4">High-quality spark plugs for optimal ignition</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Spark%20Plugs"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -760,10 +779,13 @@
                     <h2 class="category-title text-3xl font-bold mb-10">Lighting & Electrical</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-lightbulb text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1494976388901-750342ad5036?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Headlights">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Headlights</h3>
-                                <p class="text-gray-400">Headlight assemblies</p>
+                                <p class="text-gray-400 mb-4">LED and halogen headlight assemblies</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Headlights"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -772,10 +794,13 @@
                         </div>
 
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-battery-full text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1629654291660-3c98113a0438?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Car Battery">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Car Battery</h3>
-                                <p class="text-gray-400">Reliable car batteries</p>
+                                <p class="text-gray-400 mb-4">Reliable car batteries for all vehicle types</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Car%20Battery"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -784,10 +809,13 @@
                         </div>
 
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-cog text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Alternator">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Alternator</h3>
-                                <p class="text-gray-400">High-quality alternators</p>
+                                <p class="text-gray-400 mb-4">High-quality alternators for electrical systems</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Alternator"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -796,10 +824,13 @@
                         </div>
 
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-play text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1622819584099-e04ccb14e8a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Starter Motor">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Starter Motor</h3>
-                                <p class="text-gray-400">Reliable starter motors</p>
+                                <p class="text-gray-400 mb-4">Reliable starter motors for smooth engine starting</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Starter%20Motor"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -814,10 +845,13 @@
                     <h2 class="category-title text-3xl font-bold mb-10">Braking System</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-car-crash text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1563720223482-d9e48b4844c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Brake Pads">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Brake Pads</h3>
-                                <p class="text-gray-400">High-performance brake pads</p>
+                                <p class="text-gray-400 mb-4">High-performance brake pads for all vehicle types</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Pads"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -826,10 +860,13 @@
                         </div>
 
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-compress-alt text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1593941707882-a5bba53306fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Brake Discs">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Brake Discs</h3>
-                                <p class="text-gray-400">Premium brake discs</p>
+                                <p class="text-gray-400 mb-4">Premium brake discs for superior stopping power</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Discs"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -838,10 +875,13 @@
                         </div>
 
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-tint text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Brake Fluid">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Brake Fluid</h3>
-                                <p class="text-gray-400">High-quality brake fluid</p>
+                                <p class="text-gray-400 mb-4">High-quality brake fluid for hydraulic systems</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Fluid"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -850,10 +890,13 @@
                         </div>
 
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-shoe-prints text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Brake Shoes">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Brake Shoes</h3>
-                                <p class="text-gray-400">Durable brake shoes</p>
+                                <p class="text-gray-400 mb-4">Durable brake shoes for drum brake systems</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Shoes"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -868,10 +911,13 @@
                     <h2 class="category-title text-3xl font-bold mb-10">Engine Parts</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-gas-pump text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1632855415417-7f1c8ac2179f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Fuel Pump">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Fuel Pump</h3>
-                                <p class="text-gray-400">Reliable fuel pumps</p>
+                                <p class="text-gray-400 mb-4">Reliable fuel pumps for consistent fuel delivery</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Pump"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -880,10 +926,13 @@
                         </div>
 
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-oil-can text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Oil Pump">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Oil Pump</h3>
-                                <p class="text-gray-400">High-quality oil pumps</p>
+                                <p class="text-gray-400 mb-4">High-quality oil pumps for engine lubrication</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Oil%20Pump"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -892,10 +941,14 @@
                         </div>
 
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-fan text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Radiator">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Radiator</h3>
-                                <p class="text-gray-400">Efficient cooling radiators</p>
+                                <p class="text-gray-400 mb-4">Efficient cooling radiators for engine temperature control
+                                </p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Radiator"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
@@ -904,66 +957,15 @@
                         </div>
 
                         <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-cog text-3xl gold-text mb-4"></i>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1605050835779-b0c2c1d1f3b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Timing Belt">
+                            </div>
+                            <div class="flex-1 p-4">
                                 <h3 class="text-xl font-bold mb-2">Timing Belt</h3>
-                                <p class="text-gray-400">Durable timing belts</p>
+                                <p class="text-gray-400 mb-4">Durable timing belts for engine synchronization</p>
                             </div>
                             <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Timing%20Belt"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Suspension & Steering -->
-                <div class="mb-16">
-                    <h2 class="category-title text-3xl font-bold mb-10">Suspension & Steering</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-cogs text-3xl gold-text mb-4"></i>
-                                <h3 class="text-xl font-bold mb-2">Shock Absorbers</h3>
-                                <p class="text-gray-400">Premium shock absorbers</p>
-                            </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Shock%20Absorbers"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
-                        </div>
-
-                        <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-compress text-3xl gold-text mb-4"></i>
-                                <h3 class="text-xl font-bold mb-2">Struts</h3>
-                                <p class="text-gray-400">High-quality struts</p>
-                            </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Struts"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
-                        </div>
-
-                        <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-car-side text-3xl gold-text mb-4"></i>
-                                <h3 class="text-xl font-bold mb-2">Control Arms</h3>
-                                <p class="text-gray-400">Durable control arms</p>
-                            </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Control%20Arms"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
-                        </div>
-
-                        <div class="catalog-card">
-                            <div class="flex-1">
-                                <i class="fas fa-tachometer-alt text-3xl gold-text mb-4"></i>
-                                <h3 class="text-xl font-bold mb-2">Power Steering Pump</h3>
-                                <p class="text-gray-400">Reliable power steering pumps</p>
-                            </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Power%20Steering%20Pump"
                                 class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
                                 Order Now
                             </a>
@@ -1070,22 +1072,9 @@
             // Load initial brands
             filterBrands('china');
 
-            // Initialize animations
-            initializeAnimations();
-
-            // Mobile menu toggle
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileNav = document.querySelector('.mobile-nav');
-
-            mobileMenuBtn.addEventListener('click', function () {
-                mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function (event) {
-                if (!mobileNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
-                    mobileNav.style.display = 'none';
-                }
+            // Make all product cards visible immediately
+            document.querySelectorAll('.product-card, .catalog-card, .brand-card').forEach(card => {
+                card.classList.add('visible');
             });
         });
 
@@ -1104,8 +1093,7 @@
             // Add brands
             brandsData[country].forEach((brand, index) => {
                 const brandCard = document.createElement('div');
-                brandCard.className = 'brand-card';
-                brandCard.style.animationDelay = `${index * 50}ms`;
+                brandCard.className = 'brand-card visible';
                 brandCard.innerHTML = `
                     <img src="${brand.logo}" alt="${brand.name}" class="h-12 object-contain mb-4" 
                          onerror="this.src='https://via.placeholder.com/100x60?text=${brand.name}'">
@@ -1113,13 +1101,6 @@
                 `;
                 brandsGrid.appendChild(brandCard);
             });
-
-            // Trigger animations
-            setTimeout(() => {
-                document.querySelectorAll('.brand-card').forEach(card => {
-                    card.classList.add('visible');
-                });
-            }, 100);
         }
 
         // Show Page
@@ -1137,12 +1118,6 @@
 
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Close mobile menu
-            document.querySelector('.mobile-nav').style.display = 'none';
-
-            // Reinitialize animations
-            setTimeout(initializeAnimations, 300);
         }
 
         // Update Navigation
@@ -1179,22 +1154,6 @@
                     behavior: 'smooth'
                 });
             }
-        }
-
-        // Initialize Animations
-        function initializeAnimations() {
-            // Animate product cards
-            const productCards = document.querySelectorAll('.product-card, .catalog-card');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            productCards.forEach(card => observer.observe(card));
         }
     </script>
 </body>
