@@ -263,10 +263,171 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
+        /* Custom Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup-container {
+            background: #111;
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            padding: 30px;
+            position: relative;
+            animation: slideUp 0.4s ease;
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        .popup-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4af37;
+            text-transform: uppercase;
+        }
+
+        .close-popup {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-popup:hover {
+            color: #d4af37;
+        }
+
+        .popup-content {
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .popup-content p {
+            margin-bottom: 15px;
+        }
+
+        .popup-highlight {
+            color: #d4af37;
+            font-weight: bold;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 10px 0;
+            border: 1px solid #d4af37;
+        }
+
+        .popup-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .popup-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .popup-btn.primary {
+            background: #d4af37;
+            color: #000;
+            border: 2px solid #d4af37;
+        }
+
+        .popup-btn.primary:hover {
+            background: #b8941f;
+            border-color: #b8941f;
+        }
+
+        .popup-btn.secondary {
+            background: transparent;
+            color: #d4af37;
+            border: 2px solid #d4af37;
+        }
+
+        .popup-btn.secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: none;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1da851;
+        }
     </style>
 </head>
 
 <body class="pb-20">
+
+    <!-- Custom Popup -->
+    <div id="customPopup" class="popup-overlay">
+        <div class="popup-container">
+            <div class="popup-header">
+                <h3 class="popup-title" id="popupTitle">Chat with CEO</h3>
+                <button class="close-popup" onclick="closePopup()">&times;</button>
+            </div>
+            <div class="popup-content" id="popupContent">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+            <div class="popup-actions" id="popupActions">
+                <!-- Action buttons will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/923355366670" target="_blank" class="whatsapp-float animate-pulse" style="
@@ -307,7 +468,7 @@
 
             <button
                 class="gold-bg text-black px-8 py-3 font-black text-xs rounded-full hover:bg-white transition uppercase shadow-lg shadow-yellow-600/20"
-                onclick="alert('WeChat ID: (M751466267)\nChat with CEO')">Chat
+                onclick="showChatPopup()">Chat
                 with CEO</button>
         </div>
     </nav>
@@ -391,7 +552,7 @@
                             <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
                                 Part</p>
                             <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake Pad</h2>
-                            <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                            <button onclick="showOrderPopup('Brake Pad')"
                                 class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                 Order Now
                             </button>
@@ -407,7 +568,7 @@
                             <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
                                 Part</p>
                             <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake System</h2>
-                            <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                            <button onclick="showOrderPopup('Brake System')"
                                 class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                 Order Now
                             </button>
@@ -423,7 +584,7 @@
                             <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
                                 Part</p>
                             <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Fuel Pump</h2>
-                            <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                            <button onclick="showOrderPopup('Fuel Pump')"
                                 class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                 Order Now
                             </button>
@@ -439,7 +600,7 @@
                             <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
                                 Part</p>
                             <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Suspension</h2>
-                            <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                            <button onclick="showOrderPopup('Suspension')"
                                 class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                 Order Now
                             </button>
@@ -527,7 +688,6 @@
                 <!-- All 30 Products in One Grid -->
                 <div class="mb-16">
                     <h2 class="category-title">All Premium Auto Parts</h2>
-                    <!-- <p class="text-gray-400 text-center mb-12">30 Most Important Auto Parts - One Stop Solution</p> -->
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                         <!-- 1. Oil Filter -->
@@ -539,7 +699,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Oil Filter</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Oil Filter')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -555,7 +715,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Air Filter</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Air Filter')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -571,7 +731,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Cabin Air Filter</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Cabin Air Filter')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -587,7 +747,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Fuel Filter</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Fuel Filter')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -604,7 +764,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Spark Plugs</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Spark Plugs')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -621,7 +781,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Wiper Blades</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Wiper Blades')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -638,7 +798,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Engine Oil</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Engine Oil')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -657,7 +817,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Brake Pads</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Brake Pads')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -674,7 +834,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Brake Rotors</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Brake Rotors')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -693,7 +853,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Headlight Assembly</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Headlight Assembly')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -709,7 +869,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Tail Light Assembly</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Tail Light Assembly')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -725,7 +885,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">LED Headlight Bulbs</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('LED Headlight Bulbs')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -742,7 +902,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Fog Lights</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Fog Lights')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -761,7 +921,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Car Battery</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Car Battery')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -778,7 +938,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Alternator</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Alternator')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -797,7 +957,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Front Bumper</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Front Bumper')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -814,7 +974,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Rear Bumper</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Rear Bumper')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -831,7 +991,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Side Mirrors</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Side Mirrors')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -848,7 +1008,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Radiator</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Radiator')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -865,7 +1025,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Water Pump</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Water Pump')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -882,7 +1042,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Fuel Injector</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Fuel Injector')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -899,7 +1059,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Shock Absorbers</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Shock Absorbers')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -916,7 +1076,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Strut Assembly</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Strut Assembly')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -933,7 +1093,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Control Arms</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Control Arms')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -952,7 +1112,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Android Infotainment</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Android Infotainment')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -971,7 +1131,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Dash Cam</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Dash Cam')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -988,7 +1148,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Floor Mats</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Floor Mats')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -1005,7 +1165,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Seat Covers</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Seat Covers')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -1021,7 +1181,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Fuel Pump</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Fuel Pump')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -1037,7 +1197,7 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Suspension</h2>
-                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                <button onclick="showOrderPopup('Suspension')"
                                     class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                     Order Now
                                 </button>
@@ -1048,7 +1208,7 @@
 
                 <!-- View More Button -->
                 <div class="text-center mt-12">
-                    <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO for all products inquiry')"
+                    <button onclick="showWeChatPopup()"
                         class="gold-bg text-black px-8 py-3 rounded-full font-bold inline-flex items-center hover:bg-yellow-500 transition-all duration-300">
                         <i class="fab fa-weixin mr-3"></i> WeChat for All Products
                     </button>
@@ -1146,34 +1306,144 @@
 
             // Page Navigation Functions
             function showPage(pageId) {
-                // Hide all pages
                 document.querySelectorAll('.page').forEach(page => {
                     page.classList.remove('active');
                 });
-
-                // Show selected page
                 document.getElementById(pageId + '-page').classList.add('active');
-
-                // Update mobile navigation
                 updateMobileNav(pageId);
-
-                // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
             function updateMobileNav(pageId) {
-                // Update mobile nav icons
                 document.querySelectorAll('.nav-icon').forEach(icon => {
                     icon.classList.remove('active');
                 });
-
-                // Set active icon based on page
                 if (pageId === 'home') {
                     document.querySelector('.nav-icon:nth-child(1)').classList.add('active');
                 } else if (pageId === 'all-products') {
                     document.querySelector('.nav-icon:nth-child(2)').classList.add('active');
                 }
             }
+
+            // Custom Popup Functions
+            function showPopup(title, content, actions = '') {
+                document.getElementById('popupTitle').textContent = title;
+                document.getElementById('popupContent').innerHTML = content;
+                document.getElementById('popupActions').innerHTML = actions;
+                document.getElementById('customPopup').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closePopup() {
+                document.getElementById('customPopup').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            // Chat with CEO Popup
+            function showChatPopup() {
+                const content = `
+                    <p>Connect directly with <strong>CEO Muhammad Arif</strong> for:</p>
+                    <ul style="list-style: disc; margin-left: 20px; margin-top: 10px;">
+                        <li>Bulk order inquiries</li>
+                        <li>Custom requirements</li>
+                        <li>Business partnerships</li>
+                        <li>Price negotiations</li>
+                        <li>Technical support</li>
+                    </ul>
+                    <div class="popup-highlight">
+                        <strong>WeChat ID:</strong> M751466267<br>
+                        <strong>WhatsApp:</strong> +86 15158939407
+                    </div>
+                    <p style="margin-top: 15px;">Available 24/7 for your business needs!</p>
+                `;
+
+                const actions = `
+                    <a href="https://wa.me/8615158939407" target="_blank" class="popup-btn whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Now
+                    </a>
+                    <button class="popup-btn secondary" onclick="closePopup()">
+                        Close
+                    </button>
+                `;
+
+                showPopup('Chat with CEO', content, actions);
+            }
+
+            // Order Now Popup
+            function showOrderPopup(productName) {
+                const content = `
+                    <p>Ready to order <strong>${productName}</strong>?</p>
+                    <p>Contact us via:</p>
+                    <div class="popup-highlight">
+                        <strong>WeChat ID:</strong> M751466267<br>
+                        <strong>WhatsApp:</strong> +86 15158939407<br>
+                        <strong>Email:</strong> qaziautoparts@gmail.com
+                    </div>
+                    <p style="margin-top: 15px;">
+                        Please provide:<br>
+                        1. Product name: <strong>${productName}</strong><br>
+                        2. Required quantity<br>
+                        3. Shipping destination<br>
+                        4. Your contact details
+                    </p>
+                `;
+
+                const actions = `
+                    <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20${encodeURIComponent(productName)}" target="_blank" class="popup-btn whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                    </a>
+                    <button class="popup-btn secondary" onclick="closePopup()">
+                        Close
+                    </button>
+                `;
+
+                showPopup(`Order ${productName}`, content, actions);
+            }
+
+            // WeChat for All Products Popup
+            function showWeChatPopup() {
+                const content = `
+                    <p>For inquiries about <strong>all products</strong> or <strong>complete catalog</strong>, connect with us!</p>
+                    <div class="popup-highlight">
+                        <strong>WeChat ID:</strong> M751466267<br>
+                        <strong>WhatsApp:</strong> +86 15158939407
+                    </div>
+                    <p style="margin-top: 15px;">
+                        We provide:<br>
+                        • Complete product catalog<br>
+                        • Bulk pricing<br>
+                        • OEM/ODM services<br>
+                        • Worldwide shipping<br>
+                        • Quality assurance
+                    </p>
+                    <p>Send us a message with your requirements!</p>
+                `;
+
+                const actions = `
+                    <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20inquire%20about%20all%20auto%20parts%20products" target="_blank" class="popup-btn whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Inquire Now
+                    </a>
+                    <button class="popup-btn secondary" onclick="closePopup()">
+                        Close
+                    </button>
+                `;
+
+                showPopup('All Products Inquiry', content, actions);
+            }
+
+            // Close popup when clicking outside
+            document.getElementById('customPopup').addEventListener('click', function (e) {
+                if (e.target === this) {
+                    closePopup();
+                }
+            });
+
+            // Close popup with Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    closePopup();
+                }
+            });
 
             // Initialize on page load
             window.onload = () => {
@@ -1183,7 +1453,6 @@
 
             // Animation for product cards
             const cards = document.querySelectorAll(".featured-product-card");
-
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
