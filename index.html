@@ -95,7 +95,7 @@
             border-radius: 40px;
         }
 
-        /* Featured Products Styling - EXACT SAME AS BEFORE */
+        /* Featured Products Styling */
         .featured-product-card {
             background: black;
             border: 2px solid #d4af37;
@@ -208,6 +208,25 @@
                 z-index: 1000;
                 padding: 10px 0;
             }
+
+            /* Desktop nav ko mobile par hide karein */
+            nav.bg-black {
+                display: none !important;
+            }
+
+            /* WhatsApp button position adjust for mobile */
+            .whatsapp-float {
+                bottom: 80px !important;
+                right: 20px !important;
+                width: 60px !important;
+                height: 60px !important;
+                font-size: 1.5rem !important;
+            }
+
+            /* Body padding adjust for mobile nav */
+            body.pb-20 {
+                padding-bottom: 80px !important;
+            }
         }
 
         .nav-icon {
@@ -250,7 +269,7 @@
 <body class="pb-20">
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/8615158939407" target="_blank" class="whatsapp-float animate-pulse" style="
+    <a href="https://wa.me/923355366670" target="_blank" class="whatsapp-float animate-pulse" style="
         position: fixed;
         bottom: 90px;
         right: 20px;
@@ -271,7 +290,8 @@
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="bg-black sticky top-0 z-50 px-8 py-5 flex items-center justify-between border-b gold-border/30">
+    <nav
+        class="bg-black sticky h-[12vh] sm:h-[15vh] top-0 z-50 px-8 py-5 flex items-center justify-between border-b gold-border/30">
         <img src="./Assets/logo.png" alt="Qazi Auto Parts logo" class="h-[12vh] sm:h-[15vh]">
         <div class="flex items-center gap-4">
             <div class="hidden sm:block">
@@ -279,15 +299,12 @@
                     class="text-white font-bold px-4 py-2 hover:text-[#d4af37] transition">Home</a>
                 <a href="#" onclick="showPage('all-products')"
                     class="text-white font-bold px-4 py-2 hover:text-[#d4af37] transition">All Products</a>
-                <a href="#" onclick="showPage('top-selling')"
-                    class="text-white font-bold px-4 py-2 hover:text-[#d4af37] transition">Top Selling</a>
-                <a href="#" onclick="showPage('most-searched')"
-                    class="text-white font-bold px-4 py-2 hover:text-[#d4af37] transition">Most Searched</a>
             </div>
 
-            <a href="https://wa.me/8615158939407"
-                class="gold-bg text-black px-8 py-3 font-black text-xs rounded-full hover:bg-white transition uppercase shadow-lg shadow-yellow-600/20">Chat
-                with CEO</a>
+            <button
+                class="gold-bg text-black px-8 py-3 font-black text-xs rounded-full hover:bg-white transition uppercase shadow-lg shadow-yellow-600/20"
+                onclick="alert('WeChat ID: (M751466267)\nChat with CEO')">Chat
+                with CEO</button>
         </div>
     </nav>
 
@@ -300,14 +317,6 @@
         <a href="#" onclick="showPage('all-products')" class="nav-icon">
             <i class="fas fa-box"></i>
             <span>All Products</span>
-        </a>
-        <a href="#" onclick="showPage('top-selling')" class="nav-icon">
-            <i class="fas fa-fire"></i>
-            <span>Top Selling</span>
-        </a>
-        <a href="#" onclick="showPage('most-searched')" class="nav-icon">
-            <i class="fas fa-search"></i>
-            <span>Most Searched</span>
         </a>
     </div>
 
@@ -378,12 +387,10 @@
                             <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
                                 Part</p>
                             <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake Pad</h2>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Pad">
-                                <button
-                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                    Order Now
-                                </button>
-                            </a>
+                            <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                Order Now
+                            </button>
                         </div>
                     </div>
 
@@ -396,12 +403,10 @@
                             <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
                                 Part</p>
                             <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake System</h2>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20System">
-                                <button
-                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                    Order Now
-                                </button>
-                            </a>
+                            <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                Order Now
+                            </button>
                         </div>
                     </div>
 
@@ -414,12 +419,10 @@
                             <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
                                 Part</p>
                             <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Fuel Pump</h2>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Pump">
-                                <button
-                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                    Order Now
-                                </button>
-                            </a>
+                            <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                Order Now
+                            </button>
                         </div>
                     </div>
 
@@ -432,12 +435,10 @@
                             <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
                                 Part</p>
                             <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Suspension</h2>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Suspension">
-                                <button
-                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                    Order Now
-                                </button>
-                            </a>
+                            <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                Order Now
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -500,7 +501,7 @@
         </section>
     </div>
 
-    <!-- All Products Page -->
+    <!-- All Products Page (Sab Products Yahan Hain) -->
     <div id="all-products-page" class="page">
         <!-- Hero Section -->
         <section class="py-24 bg-[#0a0a0a] text-center px-6 relative overflow-hidden">
@@ -512,10 +513,6 @@
                 <button onclick="showPage('home')"
                     class="border-2 border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition">
                     <i class="fas fa-arrow-left mr-2"></i> Back to Home
-                </button>
-                <button onclick="showPage('top-selling')"
-                    class="gold-bg text-black px-6 py-2 rounded-full hover:bg-yellow-500 transition">
-                    Top Selling <i class="fas fa-fire ml-2"></i>
                 </button>
             </div>
         </section>
@@ -536,12 +533,10 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Oil Filter</h2>
-                                <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Oil%20Filter">
-                                    <button
-                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                        Order Now
-                                    </button>
-                                </a>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
                             </div>
                         </div>
 
@@ -554,12 +549,10 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Air Filter</h2>
-                                <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Air%20Filter">
-                                    <button
-                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                        Order Now
-                                    </button>
-                                </a>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
                             </div>
                         </div>
 
@@ -572,13 +565,10 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Cabin Air Filter</h2>
-                                <a
-                                    href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Cabin%20Air%20Filter">
-                                    <button
-                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                        Order Now
-                                    </button>
-                                </a>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
                             </div>
                         </div>
 
@@ -591,12 +581,10 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Fuel Filter</h2>
-                                <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Filter">
-                                    <button
-                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                        Order Now
-                                    </button>
-                                </a>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -618,13 +606,10 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Headlight Assembly</h2>
-                                <a
-                                    href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Headlight%20Assembly">
-                                    <button
-                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                        Order Now
-                                    </button>
-                                </a>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
                             </div>
                         </div>
 
@@ -637,13 +622,10 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Tail Light Assembly</h2>
-                                <a
-                                    href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Tail%20Light%20Assembly">
-                                    <button
-                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                        Order Now
-                                    </button>
-                                </a>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
                             </div>
                         </div>
 
@@ -656,13 +638,10 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-xl font-extrabold text-[#D4AF37] italic">LED Headlight Bulbs</h2>
-                                <a
-                                    href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20LED%20Headlight%20Bulbs">
-                                    <button
-                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                        Order Now
-                                    </button>
-                                </a>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
                             </div>
                         </div>
 
@@ -678,12 +657,253 @@
                                 <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
                                     Spare Part</p>
                                 <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Car Battery</h2>
-                                <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Car%20Battery">
-                                    <button
-                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                        Order Now
-                                    </button>
-                                </a>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Top Selling Products -->
+                <div class="mb-16">
+                    <h2 class="category-title">🔥 Top Selling Products</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Brake Pads -->
+                        <div class="featured-product-card">
+                            <div class="relative">
+                                <div class="popular-badge">#1 TOP SELLER</div>
+                                <div class="featured-product-image">
+                                    <img src="./Assets/break-pad.jpg" alt="Brake Pads" />
+                                </div>
+                            </div>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare
+                                    Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake Pads</h2>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Car Battery -->
+                        <div class="featured-product-card">
+                            <div class="relative">
+                                <div class="popular-badge">#2 TOP SELLER</div>
+                                <div class="featured-product-image">
+                                    <img src="./Assets/car-battery.png" alt="Car Battery" />
+                                </div>
+                            </div>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare
+                                    Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Car Battery</h2>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Oil Filter -->
+                        <div class="featured-product-card">
+                            <div class="relative">
+                                <div class="popular-badge">#3 TOP SELLER</div>
+                                <div class="featured-product-image">
+                                    <img src="./Assets/oil-filter.png" alt="Oil Filter" />
+                                </div>
+                            </div>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare
+                                    Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Oil Filter</h2>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Fuel Pump -->
+                        <div class="featured-product-card">
+                            <div class="relative">
+                                <div class="popular-badge">#4 TOP SELLER</div>
+                                <div class="featured-product-image">
+                                    <img src="./Assets/fuel-pump.jpg" alt="Fuel Pump" />
+                                </div>
+                            </div>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare
+                                    Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Fuel Pump</h2>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Most Searched Products -->
+                <div class="mb-16">
+                    <h2 class="category-title">🔍 Most Searched Products</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Headlight Assembly -->
+                        <div class="featured-product-card">
+                            <div class="relative">
+                                <div class="search-badge">#1 MOST SEARCHED</div>
+                                <div class="featured-product-image">
+                                    <img src="./Assets/headlight-assemlby.png" alt="Headlight Assembly" />
+                                </div>
+                            </div>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare
+                                    Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Headlight Assembly</h2>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Android Infotainment -->
+                        <div class="featured-product-card">
+                            <div class="relative">
+                                <div class="search-badge">#2 MOST SEARCHED</div>
+                                <div class="featured-product-image">
+                                    <img src="./Assets/android-infotainment.png" alt="Android Infotainment" />
+                                </div>
+                            </div>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare
+                                    Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Android Infotainment</h2>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Front Bumper -->
+                        <div class="featured-product-card">
+                            <div class="relative">
+                                <div class="search-badge">#3 MOST SEARCHED</div>
+                                <div class="featured-product-image">
+                                    <img src="./Assets/font-bumper.png" alt="Front Bumper" />
+                                </div>
+                            </div>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare
+                                    Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Front Bumper</h2>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Dash Cam -->
+                        <div class="featured-product-card">
+                            <div class="relative">
+                                <div class="search-badge">#4 MOST SEARCHED</div>
+                                <div class="featured-product-image">
+                                    <img src="./Assets/dash-cam.png" alt="Dash Cam" />
+                                </div>
+                            </div>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare
+                                    Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Dash Cam</h2>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More Products (Featured ones from Home) -->
+                <div class="mb-16">
+                    <h2 class="category-title">➕ More Premium Products</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Brake System -->
+                        <div class="featured-product-card">
+                            <div class="featured-product-image">
+                                <img src="./Assets/brake-system.jpg" alt="Brake System" />
+                            </div>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake System</h2>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Fuel Pump -->
+                        <div class="featured-product-card">
+                            <div class="featured-product-image">
+                                <img src="./Assets/fuel-pump.jpg" alt="Fuel Pump" />
+                            </div>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Fuel Pump</h2>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Suspension -->
+                        <div class="featured-product-card">
+                            <div class="featured-product-image">
+                                <img src="./Assets/suspension.png" alt="Suspension" />
+                            </div>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Suspension</h2>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Coming Soon -->
+                        <div class="featured-product-card">
+                            <div class="featured-product-image">
+                                <img src="./Assets/break-pad.jpg" alt="Brake Pad" />
+                            </div>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare
+                                    Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake Pad</h2>
+                                <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO')"
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -691,230 +911,10 @@
 
                 <!-- View More Button -->
                 <div class="text-center mt-12">
-                    <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20inquire%20about%20more%20products"
+                    <button onclick="alert('WeChat ID: (M751466267)\nChat with CEO for all products inquiry')"
                         class="gold-bg text-black px-8 py-3 rounded-full font-bold inline-flex items-center hover:bg-yellow-500 transition-all duration-300">
-                        <i class="fab fa-whatsapp mr-3"></i> Inquiry for More Products
-                    </a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Top Selling Products Page -->
-    <div id="top-selling-page" class="page">
-        <!-- Top Selling Hero -->
-        <section class="py-24 bg-[#0a0a0a] text-center px-6 relative overflow-hidden">
-            <h1 class="section-title gold-text text-6xl">Top Selling</h1>
-            <h2 class="section-title text-white mb-4">Best Selling <span class="gold-text">Products</span></h2>
-            <p class="text-gray-500 text-xs md:text-sm uppercase tracking-[0.6em] font-bold">Customer Favorites •
-                Highest Sales • Premium Quality</p>
-            <div class="mt-8">
-                <button onclick="showPage('all-products')"
-                    class="border-2 border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition">
-                    <i class="fas fa-arrow-left mr-2"></i> View All Products
-                </button>
-            </div>
-        </section>
-
-        <!-- Top Selling Products -->
-        <section class="py-20">
-            <div class="container mx-auto px-4">
-                <h2 class="category-title">🔥 Most Popular Selling Items</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Brake Pads -->
-                    <div class="featured-product-card">
-                        <div class="relative">
-                            <div class="popular-badge">#1 TOP SELLER</div>
-                            <div class="featured-product-image">
-                                <img src="./Assets/break-pad.jpg" alt="Brake Pads" />
-                            </div>
-                        </div>
-                        <div class="py-5 flex flex-col gap-2 items-center text-center">
-                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
-                                Part</p>
-                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake Pads</h2>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Pads">
-                                <button
-                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                    Order Now
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Car Battery -->
-                    <div class="featured-product-card">
-                        <div class="relative">
-                            <div class="popular-badge">#2 TOP SELLER</div>
-                            <div class="featured-product-image">
-                                <img src="./Assets/car-battery.png" alt="Car Battery" />
-                            </div>
-                        </div>
-                        <div class="py-5 flex flex-col gap-2 items-center text-center">
-                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
-                                Part</p>
-                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Car Battery</h2>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Car%20Battery">
-                                <button
-                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                    Order Now
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Oil Filter -->
-                    <div class="featured-product-card">
-                        <div class="relative">
-                            <div class="popular-badge">#3 TOP SELLER</div>
-                            <div class="featured-product-image">
-                                <img src="./Assets/oil-filter.png" alt="Oil Filter" />
-                            </div>
-                        </div>
-                        <div class="py-5 flex flex-col gap-2 items-center text-center">
-                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
-                                Part</p>
-                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Oil Filter</h2>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Oil%20Filter">
-                                <button
-                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                    Order Now
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Fuel Pump -->
-                    <div class="featured-product-card">
-                        <div class="relative">
-                            <div class="popular-badge">#4 TOP SELLER</div>
-                            <div class="featured-product-image">
-                                <img src="./Assets/fuel-pump.jpg" alt="Fuel Pump" />
-                            </div>
-                        </div>
-                        <div class="py-5 flex flex-col gap-2 items-center text-center">
-                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
-                                Part</p>
-                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Fuel Pump</h2>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Pump">
-                                <button
-                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                    Order Now
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Most Searched Products Page -->
-    <div id="most-searched-page" class="page">
-        <!-- Most Searched Hero -->
-        <section class="py-24 bg-[#0a0a0a] text-center px-6 relative overflow-hidden">
-            <h1 class="section-title gold-text text-6xl">Most Searched</h1>
-            <h2 class="section-title text-white mb-4">Frequently Searched <span class="gold-text">Products</span></h2>
-            <p class="text-gray-500 text-xs md:text-sm uppercase tracking-[0.6em] font-bold">High Demand • Top Queries •
-                Customer Interest</p>
-            <div class="mt-8">
-                <button onclick="showPage('all-products')"
-                    class="border-2 border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition">
-                    <i class="fas fa-arrow-left mr-2"></i> View All Products
-                </button>
-            </div>
-        </section>
-
-        <!-- Most Searched Products -->
-        <section class="py-20">
-            <div class="container mx-auto px-4">
-                <h2 class="category-title">🔍 Frequently Searched Items</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Headlight Assembly -->
-                    <div class="featured-product-card">
-                        <div class="relative">
-                            <div class="search-badge">#1 MOST SEARCHED</div>
-                            <div class="featured-product-image">
-                                <img src="./Assets/headlight-assemlby.png" alt="Headlight Assembly" />
-                            </div>
-                        </div>
-                        <div class="py-5 flex flex-col gap-2 items-center text-center">
-                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
-                                Part</p>
-                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Headlight Assembly</h2>
-                            <a
-                                href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Headlight%20Assembly">
-                                <button
-                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                    Order Now
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Android Infotainment -->
-                    <div class="featured-product-card">
-                        <div class="relative">
-                            <div class="search-badge">#2 MOST SEARCHED</div>
-                            <div class="featured-product-image">
-                                <img src="./Assets/android-infotainment.png" alt="Android Infotainment" />
-                            </div>
-                        </div>
-                        <div class="py-5 flex flex-col gap-2 items-center text-center">
-                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
-                                Part</p>
-                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Android Infotainment</h2>
-                            <a
-                                href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Android%20Infotainment">
-                                <button
-                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                    Order Now
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Front Bumper -->
-                    <div class="featured-product-card">
-                        <div class="relative">
-                            <div class="search-badge">#3 MOST SEARCHED</div>
-                            <div class="featured-product-image">
-                                <img src="./Assets/font-bumper.png" alt="Front Bumper" />
-                            </div>
-                        </div>
-                        <div class="py-5 flex flex-col gap-2 items-center text-center">
-                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
-                                Part</p>
-                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Front Bumper</h2>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Front%20Bumper">
-                                <button
-                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                    Order Now
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Dash Cam -->
-                    <div class="featured-product-card">
-                        <div class="relative">
-                            <div class="search-badge">#4 MOST SEARCHED</div>
-                            <div class="featured-product-image">
-                                <img src="./Assets/dash-cam.png" alt="Dash Cam" />
-                            </div>
-                        </div>
-                        <div class="py-5 flex flex-col gap-2 items-center text-center">
-                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
-                                Part</p>
-                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Dash Cam</h2>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Dash%20Cam">
-                                <button
-                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
-                                    Order Now
-                                </button>
-                            </a>
-                        </div>
-                    </div>
+                        <i class="fab fa-weixin mr-3"></i> WeChat for All Products
+                    </button>
                 </div>
             </div>
         </section>
@@ -1036,10 +1036,6 @@
                 document.querySelector('.nav-icon:nth-child(1)').classList.add('active');
             } else if (pageId === 'all-products') {
                 document.querySelector('.nav-icon:nth-child(2)').classList.add('active');
-            } else if (pageId === 'top-selling') {
-                document.querySelector('.nav-icon:nth-child(3)').classList.add('active');
-            } else if (pageId === 'most-searched') {
-                document.querySelector('.nav-icon:nth-child(4)').classList.add('active');
             }
         }
 
