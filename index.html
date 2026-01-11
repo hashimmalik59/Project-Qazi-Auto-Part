@@ -9,61 +9,153 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
-        :root {
-            --gold: #D4AF37;
-            --dark-bg: #050505;
-            --card-bg: #111;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
+            background-color: #050505;
             color: #e2e8f0;
-            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
         .gold-text {
-            color: var(--gold);
+            color: #d4af37;
         }
 
         .gold-bg {
-            background-color: var(--gold);
+            background-color: #d4af37;
         }
 
         .gold-border {
-            border-color: var(--gold);
+            border-color: #d4af37;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Premium Filter Buttons */
+        .filter-btn {
+            cursor: pointer;
+            padding: 15px;
+            border: 2px solid #222;
+            border-radius: 12px;
+            background: #111;
+            transition: 0.4s;
+            min-width: 110px;
+            text-align: center;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
+        .filter-btn:hover {
+            border-color: #d4af37;
+        }
 
-            to {
-                opacity: 1;
-            }
+        .filter-btn.active {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.15);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Colorful Logo Display */
+        .logo-box {
+            background: #ffffff;
+            border: 2px solid #222;
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.4s;
+            height: 160px;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-box:hover {
+            border-color: #d4af37;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .brand-logo {
+            width: 100px;
+            height: 75px;
+            object-fit: contain;
+            filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.1));
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            letter-spacing: -1px;
+        }
+
+        .about-card {
+            background: linear-gradient(145deg, #111, #000);
+            border: 2px solid #d4af37;
+            border-radius: 40px;
+        }
+
+        /* Featured Products Styling - EXACT SAME AS BEFORE */
+        .featured-product-card {
+            background: black;
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            height: 100%;
+        }
+
+        .featured-product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .featured-product-image {
+            height: 200px;
+            background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .featured-product-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .featured-product-card:hover .featured-product-image img {
+            transform: scale(1.05);
+            transition: transform 0.5s ease;
+        }
+
+        /* Product Badges */
+        .popular-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4757;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+
+        .search-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #2ed573;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 10;
         }
 
         @keyframes pulse {
@@ -78,143 +170,44 @@
             }
         }
 
-        .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out forwards;
+        /* Page Navigation */
+        .page {
+            display: none;
         }
 
-        .animate-fadeIn {
-            animation: fadeIn 0.6s ease-out forwards;
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
         }
 
-        .animate-pulse {
-            animation: pulse 2s infinite;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
-        /* Header Styles */
-        .header {
-            background: rgba(5, 5, 5, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        /* Navigation Menu */
+        .nav-menu {
+            display: none;
         }
 
-        /* Product Card */
-        .product-card {
-            background: var(--card-bg);
-            border: 1px solid #333;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            opacity: 1;
-            transform: translateY(0);
-            overflow: hidden;
-        }
-
-        .product-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
-        }
-
-        /* Catalog Card */
-        .catalog-card {
-            background: var(--card-bg);
-            border: 1px solid #333;
-            border-radius: 15px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            opacity: 1;
-            transform: translateY(0);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .catalog-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
-        }
-
-        /* Brand Logo Card */
-        .brand-card {
-            background: white;
-            border: 2px solid #222;
-            border-radius: 15px;
-            padding: 20px;
-            height: 160px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .brand-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
-        }
-
-        /* Filter Button */
-        .filter-btn {
-            background: var(--card-bg);
-            border: 2px solid #333;
-            border-radius: 12px;
-            padding: 12px 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-width: 110px;
-            text-align: center;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            border-color: var(--gold);
-            background: rgba(212, 175, 55, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .filter-btn.active {
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
-        }
-
-        /* WhatsApp Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 70px;
-            height: 70px;
-            background: #25D366;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
-        }
-
-        /* Mobile Navigation */
-        .mobile-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(17, 17, 17, 0.95);
-            backdrop-filter: blur(10px);
-            border-top: 2px solid var(--gold);
-            z-index: 1000;
-            padding: 10px 0;
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.95);
+                backdrop-filter: blur(10px);
+                border-top: 2px solid #d4af37;
+                z-index: 1000;
+                padding: 10px 0;
+            }
         }
 
         .nav-icon {
@@ -224,759 +217,479 @@
             align-items: center;
             color: #888;
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             padding: 5px 0;
             transition: all 0.3s ease;
         }
 
         .nav-icon.active {
-            color: var(--gold);
-            transform: translateY(-2px);
+            color: #d4af37;
         }
 
         .nav-icon i {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             margin-bottom: 4px;
-        }
-
-        /* Navigation Links */
-        .nav-link {
-            position: relative;
-            padding: 8px 16px;
-            font-weight: 600;
-            color: #888;
-            transition: all 0.3s ease;
-            border-radius: 8px;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--gold);
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 2px;
-            background: var(--gold);
-            border-radius: 2px;
-        }
-
-        /* Page Transitions */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        /* Hero Section Background */
-        .hero-bg {
-            background: linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.95)),
-                url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        /* About Card */
-        .about-card {
-            background: linear-gradient(145deg, #111, #000);
-            border: 2px solid var(--gold);
-            border-radius: 25px;
-            overflow: hidden;
         }
 
         /* Category Title */
         .category-title {
-            background: linear-gradient(90deg, var(--gold), #ffdb70);
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            letter-spacing: -1px;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, #d4af37, #ffdb70);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #111;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #b8941f;
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(212, 175, 55, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--gold);
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Product Image Container */
-        .product-image {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            border-radius: 12px 12px 0 0;
-            background: #222;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
-        }
-
-        /* Remove hamburger menu on mobile */
-        #mobileMenuBtn {
-            display: none;
-        }
-
-        /* Always show mobile nav on mobile */
-        @media (max-width: 768px) {
-            .mobile-nav {
-                display: flex;
-            }
-
-            .header nav {
-                display: none;
-            }
-        }
-
-        /* Desktop styles */
-        @media (min-width: 769px) {
-            .mobile-nav {
-                display: none;
-            }
-        }
     </style>
 </head>
 
-<body class="pb-16 md:pb-0">
+<body class="pb-20">
+
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/8615158939407" target="_blank" class="whatsapp-float animate-pulse">
+    <a href="https://wa.me/8615158939407" target="_blank" class="whatsapp-float animate-pulse" style="
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 70px;
+        height: 70px;
+        background: #25D366;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        z-index: 1000;
+        transition: all 0.3s ease;
+    ">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- Desktop Navigation -->
-    <header class="header sticky top-0 z-50 px-4 md:px-8 py-4">
-        <div class="container mx-auto flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center space-x-3">
-                <div class="w-16 h-16 gold-bg rounded-full flex items-center justify-center">
-                    <i class="fas fa-car text-2xl text-black"></i>
-                </div>
-                <div>
-                    <h1 class="text-2xl font-bold text-white">QAZI <span class="gold-text">AUTO PARTS</span></h1>
-                    <p class="text-xs text-gray-400">Yiwu, China</p>
-                </div>
-            </div>
-
-            <!-- Desktop Menu -->
-            <nav class="hidden md:flex items-center space-x-6">
-                <a href="#" onclick="showPage('home')" class="nav-link active">Home</a>
-                <a href="#brands" onclick="showPage('home'); scrollToSection('brands')" class="nav-link">Brands</a>
-                <a href="#products" onclick="showPage('home'); scrollToSection('products')"
-                    class="nav-link">Products</a>
-                <a href="#" onclick="showPage('catalog')" class="nav-link">Catalog</a>
-                <a href="https://wa.me/8615158939407"
-                    class="gold-bg text-black px-6 py-2.5 rounded-full font-bold hover:bg-yellow-500 transition-all duration-300 shadow-lg">
-                    <i class="fab fa-whatsapp mr-2"></i> WhatsApp
-                </a>
-            </nav>
+    <nav class="bg-black sticky top-0 z-50 px-8 py-5 flex items-center justify-between border-b gold-border/30">
+        <img src="./Assets/logo.png" alt="Qazi Auto Parts logo" class="h-[12vh] sm:h-[15vh]">
+        <div class="flex gap-4">
+            <a href="#" onclick="showPage('home')"
+                class="text-white font-bold px-4 py-2 hover:text-[#d4af37] transition">Home</a>
+            <a href="#" onclick="showPage('all-products')"
+                class="text-white font-bold px-4 py-2 hover:text-[#d4af37] transition">All Products</a>
+            <a href="#" onclick="showPage('top-selling')"
+                class="text-white font-bold px-4 py-2 hover:text-[#d4af37] transition">Top Selling</a>
+            <a href="#" onclick="showPage('most-searched')"
+                class="text-white font-bold px-4 py-2 hover:text-[#d4af37] transition">Most Searched</a>
+            <a href="https://wa.me/8615158939407"
+                class="gold-bg text-black px-8 py-3 font-black text-xs rounded-full hover:bg-white transition uppercase shadow-lg shadow-yellow-600/20">Chat
+                with CEO</a>
         </div>
-    </header>
+    </nav>
 
-    <!-- Mobile Navigation Menu (Always visible on mobile) -->
-    <div class="mobile-nav">
+    <!-- Mobile Navigation Menu -->
+    <div class="nav-menu">
         <a href="#" onclick="showPage('home')" class="nav-icon active">
             <i class="fas fa-home"></i>
             <span>Home</span>
         </a>
-        <a href="#brands" onclick="showPage('home'); scrollToSection('brands')" class="nav-icon">
-            <i class="fas fa-flag"></i>
-            <span>Brands</span>
-        </a>
-        <a href="#products" onclick="showPage('home'); scrollToSection('products')" class="nav-icon">
+        <a href="#" onclick="showPage('all-products')" class="nav-icon">
             <i class="fas fa-box"></i>
-            <span>Products</span>
+            <span>All Products</span>
         </a>
-        <a href="#" onclick="showPage('catalog')" class="nav-icon">
-            <i class="fas fa-list"></i>
-            <span>Catalog</span>
+        <a href="#" onclick="showPage('top-selling')" class="nav-icon">
+            <i class="fas fa-fire"></i>
+            <span>Top Selling</span>
         </a>
-        <a href="tel:+8615158939407" class="nav-icon">
-            <i class="fas fa-phone"></i>
-            <span>Call</span>
+        <a href="#" onclick="showPage('most-searched')" class="nav-icon">
+            <i class="fas fa-search"></i>
+            <span>Most Searched</span>
         </a>
     </div>
 
     <!-- Home Page -->
     <div id="home-page" class="page active">
-        <!-- Hero Section -->
-        <section class="hero-bg min-h-screen flex items-center relative py-20">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/50"></div>
-            <div class="container mx-auto px-4 md:px-8 relative z-10 text-center">
-                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 animate-fadeInUp">
-                    The Global Hub for <span class="gold-text">Every Spare Part</span>
-                </h2>
-                <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto animate-fadeInUp"
-                    style="animation-delay: 0.2s">
-                    Premium quality auto parts from China. Worldwide shipping. Trusted by clients globally.
-                </p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center animate-fadeInUp"
-                    style="animation-delay: 0.4s">
-                    <a href="#products" onclick="scrollToSection('products')"
-                        class="gold-bg text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-500 transition-all duration-300 shadow-lg">
-                        View Products
-                    </a>
-                    <a href="https://wa.me/8615158939407" target="_blank"
-                        class="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-full font-bold text-lg hover:bg-gold hover:text-black transition-all duration-300">
-                        Contact Now
-                    </a>
+        <header class="py-24 bg-[#0a0a0a] text-center px-6 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                <i class="fas fa-car-side text-[20rem] absolute -left-20 top-0"></i>
+            </div>
+            <h1 class="section-title gold-text text-6xl">Qazi Auto Parts</h1>
+            <h2 class="section-title text-white mb-4">The Global Hub for <span class="gold-text">Every Spare Part</span>
+            </h2>
+            <p class="text-gray-500 text-xs md:text-sm uppercase tracking-[0.6em] font-bold">China • USA • Japan •
+                Germany •
+                Korea • France • Italy</p>
+        </header>
+
+        <section class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-4 mb-20">
+                <div class="filter-btn active" onclick="updateBrands('china', this)">
+                    <img src="https://flagcdn.com/w80/cn.png" class="w-10 mx-auto mb-2 rounded shadow-md">
+                    <span class="text-[10px] font-black uppercase text-white tracking-widest">China</span>
                 </div>
+                <div class="filter-btn" onclick="updateBrands('usa', this)">
+                    <img src="https://flagcdn.com/w80/us.png" class="w-10 mx-auto mb-2 rounded shadow-md">
+                    <span class="text-[10px] font-black uppercase text-white tracking-widest">America</span>
+                </div>
+                <div class="filter-btn" onclick="updateBrands('japan', this)">
+                    <img src="https://flagcdn.com/w80/jp.png" class="w-10 mx-auto mb-2 rounded shadow-md">
+                    <span class="text-[10px] font-black uppercase text-white tracking-widest">Japan</span>
+                </div>
+                <div class="filter-btn" onclick="updateBrands('germany', this)">
+                    <img src="https://flagcdn.com/w80/de.png" class="w-10 mx-auto mb-2 rounded shadow-md">
+                    <span class="text-[10px] font-black uppercase text-white tracking-widest">Germany</span>
+                </div>
+                <div class="filter-btn" onclick="updateBrands('korea', this)">
+                    <img src="https://flagcdn.com/w80/kr.png" class="w-10 mx-auto mb-2 rounded shadow-md">
+                    <span class="text-[10px] font-black uppercase text-white tracking-widest">S. Korea</span>
+                </div>
+                <div class="filter-btn" onclick="updateBrands('france', this)">
+                    <img src="https://flagcdn.com/w80/fr.png" class="w-10 mx-auto mb-2 rounded shadow-md">
+                    <span class="text-[10px] font-black uppercase text-white tracking-widest">France</span>
+                </div>
+                <div class="filter-btn" onclick="updateBrands('machinery', this)">
+                    <div class="h-10 flex items-center justify-center mb-1 gold-text text-3xl"><i
+                            class="fas fa-truck-monster"></i></div>
+                    <span class="text-[10px] font-black uppercase gold-text tracking-widest">Machinery</span>
+                </div>
+            </div>
+            <div id="brandGrid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 mb-20">
             </div>
         </section>
 
-        <!-- Flags Section -->
-        <section class="py-12 bg-gradient-to-r from-gray-900 to-black">
+        <section class="py-20">
             <div class="container mx-auto px-4">
-                <div class="flex flex-wrap justify-center gap-6 md:gap-10">
-                    <div class="flex items-center space-x-3">
-                        <span class="text-3xl">🇨🇳</span>
-                        <span class="font-bold">China</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="text-3xl">🇺🇸</span>
-                        <span class="font-bold">USA</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="text-3xl">🇯🇵</span>
-                        <span class="font-bold">Japan</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="text-3xl">🇩🇪</span>
-                        <span class="font-bold">Germany</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="text-3xl">🇰🇷</span>
-                        <span class="font-bold">Korea</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="text-3xl">🌍</span>
-                        <span class="font-bold">Worldwide</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <h1 class="text-3xl md:text-4xl font-bold text-center mb-12 uppercase italic tracking-tighter">
+                    <span class="gold-text">Featured</span>
+                    Products
+                </h1>
 
-        <!-- Brands Section -->
-        <section id="brands" class="py-20">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Our <span class="gold-text">Partners</span>
-                </h2>
-                <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Supplying spare parts for vehicles from all
-                    major brands worldwide</p>
-
-                <!-- Filter Buttons -->
-                <div class="flex flex-wrap justify-center gap-4 mb-12">
-                    <button class="filter-btn active" onclick="filterBrands('china')">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-xl">🇨🇳</span>
-                            <span class="font-bold">China</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product 1: Brake Pad -->
+                    <div class="featured-product-card">
+                        <div class="featured-product-image">
+                            <img src="./Assets/break-pad.jpg" alt="Brake Pad" />
                         </div>
-                    </button>
-                    <button class="filter-btn" onclick="filterBrands('usa')">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-xl">🇺🇸</span>
-                            <span class="font-bold">USA</span>
-                        </div>
-                    </button>
-                    <button class="filter-btn" onclick="filterBrands('japan')">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-xl">🇯🇵</span>
-                            <span class="font-bold">Japan</span>
-                        </div>
-                    </button>
-                    <button class="filter-btn" onclick="filterBrands('germany')">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-xl">🇩🇪</span>
-                            <span class="font-bold">Germany</span>
-                        </div>
-                    </button>
-                    <button class="filter-btn" onclick="filterBrands('korea')">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-xl">🇰🇷</span>
-                            <span class="font-bold">Korea</span>
-                        </div>
-                    </button>
-                </div>
-
-                <!-- Brands Grid -->
-                <div id="brandsGrid"
-                    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-                    <!-- Brands will be loaded here -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Products -->
-        <section id="products" class="py-20 bg-gradient-to-b from-black to-gray-900">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Featured <span
-                        class="gold-text">Products</span></h2>
-                <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Top quality auto parts with worldwide
-                    shipping</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Product 1 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1563720223482-d9e48b4844c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                alt="Brake Pads">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">Brake Pads</h3>
-                            <p class="text-gray-400 mb-6">High-performance brake pads for all vehicle types</p>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Pads"
-                                class="gold-bg text-black px-6 py-2.5 rounded-lg font-bold inline-block hover:bg-yellow-500 transition-all duration-300 w-full text-center">
-                                Order Now
+                        <div class="py-5 flex flex-col gap-2 items-center text-center">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
+                                Part</p>
+                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake Pad</h2>
+                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Pad">
+                                <button
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Product 2 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1632855415417-7f1c8ac2179f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                alt="Fuel Pumps">
+                    <!-- Product 2: Brake System -->
+                    <div class="featured-product-card">
+                        <div class="featured-product-image">
+                            <img src="./Assets/brake-system.jpg" alt="Brake System" />
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">Fuel Pumps</h3>
-                            <p class="text-gray-400 mb-6">Reliable fuel pumps for optimal engine performance</p>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Pumps"
-                                class="gold-bg text-black px-6 py-2.5 rounded-lg font-bold inline-block hover:bg-yellow-500 transition-all duration-300 w-full text-center">
-                                Order Now
+                        <div class="py-5 flex flex-col gap-2 items-center text-center">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
+                                Part</p>
+                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake System</h2>
+                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20System">
+                                <button
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Product 3 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1610641817670-db5e8d36c9cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                alt="Suspension Kits">
+                    <!-- Product 3: Fuel Pump -->
+                    <div class="featured-product-card">
+                        <div class="featured-product-image">
+                            <img src="./Assets/fuel-pump.jpg" alt="Fuel Pump" />
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">Suspension Kits</h3>
-                            <p class="text-gray-400 mb-6">Complete suspension systems for smooth rides</p>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Suspension%20Kits"
-                                class="gold-bg text-black px-6 py-2.5 rounded-lg font-bold inline-block hover:bg-yellow-500 transition-all duration-300 w-full text-center">
-                                Order Now
+                        <div class="py-5 flex flex-col gap-2 items-center text-center">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
+                                Part</p>
+                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Fuel Pump</h2>
+                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Pump">
+                                <button
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Product 4 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                alt="Oil Filters">
+                    <!-- Product 4: Suspension -->
+                    <div class="featured-product-card">
+                        <div class="featured-product-image">
+                            <img src="./Assets/suspension.png" alt="Suspension" />
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">Oil Filters</h3>
-                            <p class="text-gray-400 mb-6">Premium oil filters for engine protection</p>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Oil%20Filters"
-                                class="gold-bg text-black px-6 py-2.5 rounded-lg font-bold inline-block hover:bg-yellow-500 transition-all duration-300 w-full text-center">
-                                Order Now
+                        <div class="py-5 flex flex-col gap-2 items-center text-center">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
+                                Part</p>
+                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Suspension</h2>
+                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Suspension">
+                                <button
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
                             </a>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center mt-12">
-                    <button onclick="showPage('catalog')"
-                        class="border-2 border-gold text-gold px-8 py-3 rounded-full font-bold hover:bg-gold hover:text-black transition-all duration-300">
-                        View Full Catalog <i class="fas fa-arrow-right ml-2"></i>
+                    <button onclick="showPage('all-products')"
+                        class="border-2 border-[#d4af37] text-[#d4af37] px-8 py-3 font-bold rounded-full hover:bg-[#d4af37] hover:text-black transition-all duration-300">
+                        View All Products <i class="fas fa-arrow-right ml-2"></i>
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section class="py-20">
-            <div class="container mx-auto px-4">
-                <div class="about-card p-8 md:p-12">
-                    <div class="grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <h2 class="text-3xl md:text-4xl font-bold mb-6 gold-text">About Qazi Auto Parts</h2>
-                            <div class="space-y-4 text-gray-300">
-                                <p>Welcome to Qazi Auto Parts, your premier global partner in the automotive and heavy
-                                    machinery spare parts industry.</p>
-                                <p>Based in Yiwu, China - the world's largest trading hub - we bridge the gap between
-                                    high-quality manufacturing and global demand.</p>
-                                <p>Under the leadership of CEO Muhammad Arif, we ensure genuine quality, competitive
-                                    pricing, and lightning-fast global shipping.</p>
-                            </div>
-                        </div>
-                        <div class="bg-black/50 p-8 rounded-2xl border border-gold/20">
-                            <h3 class="text-2xl font-bold mb-6 gold-text">Contact Information</h3>
-                            <div class="space-y-6">
-                                <div class="flex items-start space-x-4">
-                                    <i class="fas fa-user-tie gold-text text-xl mt-1"></i>
-                                    <div>
-                                        <p class="text-sm text-gray-400">CEO / Founder</p>
-                                        <p class="text-lg font-bold">Muhammad Arif</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start space-x-4">
-                                    <i class="fas fa-map-marker-alt gold-text text-xl mt-1"></i>
-                                    <div>
-                                        <p class="text-sm text-gray-400">Head Office</p>
-                                        <p class="text-lg font-bold">Yiwu International Trade City, China</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start space-x-4">
-                                    <i class="fab fa-whatsapp gold-text text-xl mt-1"></i>
-                                    <div>
-                                        <p class="text-sm text-gray-400">WhatsApp / Phone</p>
-                                        <p class="text-lg font-bold">+86 15158939407</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start space-x-4">
-                                    <i class="fas fa-envelope gold-text text-xl mt-1"></i>
-                                    <div>
-                                        <p class="text-sm text-gray-400">Email</p>
-                                        <p class="text-lg font-bold">qaziautoparts390@gmail.com</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <section id="about"
+            class="about-card container mx-auto px-10 py-5 flex justify-center h-fit relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h3 class="gold-text text-4xl font-black uppercase italic mb-8">About Qazi Auto Parts</h3>
+                    <div class="space-y-6 text-gray-300 text-lg leading-relaxed">
+                        <p>Welcome to Qazi Auto Parts, your premier global partner in the automotive and heavy
+                            machinery spare parts industry. Based in the world's largest trading hub, Yiwu, China,
+                            we bridge the gap between high-quality manufacturing and global demand.</p>
+                        <p class="hidden sm:block">Under the visionary leadership of CEO Muhammad Arif, we have
+                            established
+                            a robust network
+                            that ensures genuine quality, competitive pricing, and lightning-fast global shipping.
+                            Whether it's a luxury sedan or a massive excavator, we have the parts you need.</p>
                     </div>
+                </div>
+                <div class="bg-black/50 rounded-3xl border gold-border/20 w-fit p-8">
+                    <h4
+                        class="text-white text-xl font-black uppercase italic mb-6 border-b gold-border pb-2 inline-block">
+                        Company Credentials</h4>
+                    <ul class="space-y-6">
+                        <li class="flex items-center gap-4">
+                            <i class="fas fa-user-tie gold-text text-2xl"></i>
+                            <div>
+                                <p class="text-[10px] uppercase text-gray-500 font-bold">CEO / Founder</p>
+                                <p class="text-white font-bold">Muhammad Arif</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fas fa-map-marker-alt gold-text text-2xl"></i>
+                            <div>
+                                <p class="text-[10px] uppercase text-gray-500 font-bold">Head Office</p>
+                                <p class="text-white font-bold text-sm">Shop 68470-68471, 8th Street, Gate 103, Dist. 5,
+                                    Yiwu, China</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fab fa-whatsapp gold-text text-2xl"></i>
+                            <div>
+                                <p class="text-[10px] uppercase text-gray-500 font-bold">Direct Inquiry</p>
+                                <p class="text-white font-bold">+86 15158939407</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- Catalog Page -->
-    <div id="catalog-page" class="page">
-        <!-- Catalog Hero -->
-        <section class="hero-bg py-20">
-            <div class="container mx-auto px-4 text-center">
-                <h1 class="text-4xl md:text-5xl font-bold mb-6">Complete <span class="gold-text">Product Catalog</span>
-                </h1>
-                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">Browse our extensive range of premium auto parts
-                </p>
+    <!-- All Products Page -->
+    <div id="all-products-page" class="page">
+        <!-- Hero Section -->
+        <section class="py-24 bg-[#0a0a0a] text-center px-6 relative overflow-hidden">
+            <h1 class="section-title gold-text text-6xl">All Products</h1>
+            <h2 class="section-title text-white mb-4">Complete Range of <span class="gold-text">Auto Parts</span></h2>
+            <p class="text-gray-500 text-xs md:text-sm uppercase tracking-[0.6em] font-bold">Premium Quality • Worldwide
+                Shipping • Competitive Pricing</p>
+            <div class="mt-8 flex gap-4 justify-center">
                 <button onclick="showPage('home')"
-                    class="border-2 border-white text-white px-6 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300">
+                    class="border-2 border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition">
                     <i class="fas fa-arrow-left mr-2"></i> Back to Home
+                </button>
+                <button onclick="showPage('top-selling')"
+                    class="gold-bg text-black px-6 py-2 rounded-full hover:bg-yellow-500 transition">
+                    Top Selling <i class="fas fa-fire ml-2"></i>
                 </button>
             </div>
         </section>
 
-        <!-- Catalog Content -->
+        <!-- All Products Content -->
         <section class="py-20">
             <div class="container mx-auto px-4">
-                <!-- Filters & Fluids -->
+                <!-- 1. Filters & Maintenance -->
                 <div class="mb-16">
-                    <h2 class="category-title text-3xl font-bold mb-10">Filters & Fluids</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Oil Filter">
+                    <h2 class="category-title">1. Filters & Maintenance</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Oil Filter -->
+                        <div class="featured-product-card">
+                            <div class="featured-product-image">
+                                <img src="./Assets/oil-filter.png" alt="Oil Filter" />
                             </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Oil Filter</h3>
-                                <p class="text-gray-400 mb-4">Premium quality oil filters for all vehicle types</p>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Oil Filter</h2>
+                                <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Oil%20Filter">
+                                    <button
+                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                        Order Now
+                                    </button>
+                                </a>
                             </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Oil%20Filter"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
                         </div>
 
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1593941707882-a5bba53306fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Air Filter">
+                        <!-- Air Filter -->
+                        <div class="featured-product-card">
+                            <div class="featured-product-image">
+                                <img src="./Assets/air-filter.png" alt="Air Filter" />
                             </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Air Filter</h3>
-                                <p class="text-gray-400 mb-4">High-performance air filters for better engine breathing
-                                </p>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Air Filter</h2>
+                                <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Air%20Filter">
+                                    <button
+                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                        Order Now
+                                    </button>
+                                </a>
                             </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Air%20Filter"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
                         </div>
 
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1632855415417-7f1c8ac2179f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Fuel Filter">
+                        <!-- Cabin Air Filter -->
+                        <div class="featured-product-card">
+                            <div class="featured-product-image">
+                                <img src="./Assets/cabin-filter.png" alt="Cabin Air Filter" />
                             </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Fuel Filter</h3>
-                                <p class="text-gray-400 mb-4">Efficient fuel filters for clean fuel delivery</p>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Cabin Air Filter</h2>
+                                <a
+                                    href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Cabin%20Air%20Filter">
+                                    <button
+                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                        Order Now
+                                    </button>
+                                </a>
                             </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Filter"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
                         </div>
 
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1605050835779-b0c2c1d1f3b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Spark Plugs">
+                        <!-- Fuel Filter -->
+                        <div class="featured-product-card">
+                            <div class="featured-product-image">
+                                <img src="./Assets/fuel-filter.png" alt="Fuel Filter" />
                             </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Spark Plugs</h3>
-                                <p class="text-gray-400 mb-4">High-quality spark plugs for optimal ignition</p>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Fuel Filter</h2>
+                                <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Filter">
+                                    <button
+                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                        Order Now
+                                    </button>
+                                </a>
                             </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Spark%20Plugs"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Lighting & Electrical -->
+                <!-- 2. Lighting & Electrical -->
                 <div class="mb-16">
-                    <h2 class="category-title text-3xl font-bold mb-10">Lighting & Electrical</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1494976388901-750342ad5036?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Headlights">
+                    <h2 class="category-title">2. Lighting & Electrical</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Headlight Assembly -->
+                        <div class="featured-product-card">
+                            <div class="relative">
+                                <div class="search-badge">🔍 MOST SEARCHED</div>
+                                <div class="featured-product-image">
+                                    <img src="./Assets/headlight-assemlby.png" alt="Headlight Assembly" />
+                                </div>
                             </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Headlights</h3>
-                                <p class="text-gray-400 mb-4">LED and halogen headlight assemblies</p>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Headlight Assembly</h2>
+                                <a
+                                    href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Headlight%20Assembly">
+                                    <button
+                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                        Order Now
+                                    </button>
+                                </a>
                             </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Headlights"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
                         </div>
 
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1629654291660-3c98113a0438?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Car Battery">
+                        <!-- Tail Light Assembly -->
+                        <div class="featured-product-card">
+                            <div class="featured-product-image">
+                                <img src="./Assets/tail-light-assembly.png" alt="Tail Light Assembly" />
                             </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Car Battery</h3>
-                                <p class="text-gray-400 mb-4">Reliable car batteries for all vehicle types</p>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Tail Light Assembly</h2>
+                                <a
+                                    href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Tail%20Light%20Assembly">
+                                    <button
+                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                        Order Now
+                                    </button>
+                                </a>
                             </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Car%20Battery"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
                         </div>
 
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Alternator">
+                        <!-- LED Headlight Bulbs -->
+                        <div class="featured-product-card">
+                            <div class="featured-product-image">
+                                <img src="./Assets/led-headlight-bulb.png" alt="LED Headlight Bulbs" />
                             </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Alternator</h3>
-                                <p class="text-gray-400 mb-4">High-quality alternators for electrical systems</p>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">LED Headlight Bulbs</h2>
+                                <a
+                                    href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20LED%20Headlight%20Bulbs">
+                                    <button
+                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                        Order Now
+                                    </button>
+                                </a>
                             </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Alternator"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
                         </div>
 
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1622819584099-e04ccb14e8a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Starter Motor">
+                        <!-- Car Battery -->
+                        <div class="featured-product-card">
+                            <div class="relative">
+                                <div class="popular-badge">🔥 TOP SELLING</div>
+                                <div class="featured-product-image">
+                                    <img src="./Assets/car-battery.png" alt="Car Battery" />
+                                </div>
                             </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Starter Motor</h3>
-                                <p class="text-gray-400 mb-4">Reliable starter motors for smooth engine starting</p>
+                            <div class="py-5 flex flex-col gap-2 items-center text-center">
+                                <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                    Spare Part</p>
+                                <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Car Battery</h2>
+                                <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Car%20Battery">
+                                    <button
+                                        class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                        Order Now
+                                    </button>
+                                </a>
                             </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Starter%20Motor"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Braking System -->
-                <div class="mb-16">
-                    <h2 class="category-title text-3xl font-bold mb-10">Braking System</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1563720223482-d9e48b4844c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Brake Pads">
-                            </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Brake Pads</h3>
-                                <p class="text-gray-400 mb-4">High-performance brake pads for all vehicle types</p>
-                            </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Pads"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
-                        </div>
-
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1593941707882-a5bba53306fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Brake Discs">
-                            </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Brake Discs</h3>
-                                <p class="text-gray-400 mb-4">Premium brake discs for superior stopping power</p>
-                            </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Discs"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
-                        </div>
-
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Brake Fluid">
-                            </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Brake Fluid</h3>
-                                <p class="text-gray-400 mb-4">High-quality brake fluid for hydraulic systems</p>
-                            </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Fluid"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
-                        </div>
-
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Brake Shoes">
-                            </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Brake Shoes</h3>
-                                <p class="text-gray-400 mb-4">Durable brake shoes for drum brake systems</p>
-                            </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Shoes"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Engine Parts -->
-                <div class="mb-16">
-                    <h2 class="category-title text-3xl font-bold mb-10">Engine Parts</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1632855415417-7f1c8ac2179f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Fuel Pump">
-                            </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Fuel Pump</h3>
-                                <p class="text-gray-400 mb-4">Reliable fuel pumps for consistent fuel delivery</p>
-                            </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Pump"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
-                        </div>
-
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Oil Pump">
-                            </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Oil Pump</h3>
-                                <p class="text-gray-400 mb-4">High-quality oil pumps for engine lubrication</p>
-                            </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Oil%20Pump"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
-                        </div>
-
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Radiator">
-                            </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Radiator</h3>
-                                <p class="text-gray-400 mb-4">Efficient cooling radiators for engine temperature control
-                                </p>
-                            </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Radiator"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
-                        </div>
-
-                        <div class="catalog-card">
-                            <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1605050835779-b0c2c1d1f3b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Timing Belt">
-                            </div>
-                            <div class="flex-1 p-4">
-                                <h3 class="text-xl font-bold mb-2">Timing Belt</h3>
-                                <p class="text-gray-400 mb-4">Durable timing belts for engine synchronization</p>
-                            </div>
-                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Timing%20Belt"
-                                class="gold-bg text-black py-2.5 px-4 rounded-lg font-bold text-center block mt-4 hover:bg-yellow-500 transition-all">
-                                Order Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- More Products Button -->
-                <div class="text-center">
+                <!-- View More Button -->
+                <div class="text-center mt-12">
                     <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20inquire%20about%20more%20products"
-                        class="gold-bg text-black px-8 py-3 rounded-full font-bold text-lg inline-flex items-center hover:bg-yellow-500 transition-all duration-300">
+                        class="gold-bg text-black px-8 py-3 rounded-full font-bold inline-flex items-center hover:bg-yellow-500 transition-all duration-300">
                         <i class="fab fa-whatsapp mr-3"></i> Inquiry for More Products
                     </a>
                 </div>
@@ -984,126 +697,315 @@
         </section>
     </div>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-4">
-            <div class="text-center">
-                <h3 class="text-2xl font-bold mb-6">Qazi <span class="gold-text">Auto Parts</span></h3>
-                <p class="text-gray-400 mb-6 max-w-2xl mx-auto">
-                    Your trusted partner for premium auto parts from China. Worldwide shipping with competitive prices.
-                </p>
-                <div class="flex justify-center space-x-6 mb-6">
-                    <a href="https://wa.me/8615158939407"
-                        class="text-gray-400 hover:text-gold transition-colors duration-300">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                    </a>
-                    <a href="mailto:qaziautoparts390@gmail.com"
-                        class="text-gray-400 hover:text-gold transition-colors duration-300">
-                        <i class="fas fa-envelope text-2xl"></i>
-                    </a>
-                    <a href="tel:+8615158939407" class="text-gray-400 hover:text-gold transition-colors duration-300">
-                        <i class="fas fa-phone text-2xl"></i>
-                    </a>
-                </div>
-                <p class="text-gray-500 text-sm">
-                    © 2024 Qazi Auto Parts. All rights reserved.
-                </p>
+    <!-- Top Selling Products Page -->
+    <div id="top-selling-page" class="page">
+        <!-- Top Selling Hero -->
+        <section class="py-24 bg-[#0a0a0a] text-center px-6 relative overflow-hidden">
+            <h1 class="section-title gold-text text-6xl">Top Selling</h1>
+            <h2 class="section-title text-white mb-4">Best Selling <span class="gold-text">Products</span></h2>
+            <p class="text-gray-500 text-xs md:text-sm uppercase tracking-[0.6em] font-bold">Customer Favorites •
+                Highest Sales • Premium Quality</p>
+            <div class="mt-8">
+                <button onclick="showPage('all-products')"
+                    class="border-2 border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition">
+                    <i class="fas fa-arrow-left mr-2"></i> View All Products
+                </button>
             </div>
-        </div>
+        </section>
+
+        <!-- Top Selling Products -->
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <h2 class="category-title">🔥 Most Popular Selling Items</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Brake Pads -->
+                    <div class="featured-product-card">
+                        <div class="relative">
+                            <div class="popular-badge">#1 TOP SELLER</div>
+                            <div class="featured-product-image">
+                                <img src="./Assets/break-pad.jpg" alt="Brake Pads" />
+                            </div>
+                        </div>
+                        <div class="py-5 flex flex-col gap-2 items-center text-center">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
+                                Part</p>
+                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake Pads</h2>
+                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Brake%20Pads">
+                                <button
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Car Battery -->
+                    <div class="featured-product-card">
+                        <div class="relative">
+                            <div class="popular-badge">#2 TOP SELLER</div>
+                            <div class="featured-product-image">
+                                <img src="./Assets/car-battery.png" alt="Car Battery" />
+                            </div>
+                        </div>
+                        <div class="py-5 flex flex-col gap-2 items-center text-center">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
+                                Part</p>
+                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Car Battery</h2>
+                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Car%20Battery">
+                                <button
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Oil Filter -->
+                    <div class="featured-product-card">
+                        <div class="relative">
+                            <div class="popular-badge">#3 TOP SELLER</div>
+                            <div class="featured-product-image">
+                                <img src="./Assets/oil-filter.png" alt="Oil Filter" />
+                            </div>
+                        </div>
+                        <div class="py-5 flex flex-col gap-2 items-center text-center">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
+                                Part</p>
+                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Oil Filter</h2>
+                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Oil%20Filter">
+                                <button
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Fuel Pump -->
+                    <div class="featured-product-card">
+                        <div class="relative">
+                            <div class="popular-badge">#4 TOP SELLER</div>
+                            <div class="featured-product-image">
+                                <img src="./Assets/fuel-pump.jpg" alt="Fuel Pump" />
+                            </div>
+                        </div>
+                        <div class="py-5 flex flex-col gap-2 items-center text-center">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
+                                Part</p>
+                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Fuel Pump</h2>
+                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Fuel%20Pump">
+                                <button
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Most Searched Products Page -->
+    <div id="most-searched-page" class="page">
+        <!-- Most Searched Hero -->
+        <section class="py-24 bg-[#0a0a0a] text-center px-6 relative overflow-hidden">
+            <h1 class="section-title gold-text text-6xl">Most Searched</h1>
+            <h2 class="section-title text-white mb-4">Frequently Searched <span class="gold-text">Products</span></h2>
+            <p class="text-gray-500 text-xs md:text-sm uppercase tracking-[0.6em] font-bold">High Demand • Top Queries •
+                Customer Interest</p>
+            <div class="mt-8">
+                <button onclick="showPage('all-products')"
+                    class="border-2 border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition">
+                    <i class="fas fa-arrow-left mr-2"></i> View All Products
+                </button>
+            </div>
+        </section>
+
+        <!-- Most Searched Products -->
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <h2 class="category-title">🔍 Frequently Searched Items</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Headlight Assembly -->
+                    <div class="featured-product-card">
+                        <div class="relative">
+                            <div class="search-badge">#1 MOST SEARCHED</div>
+                            <div class="featured-product-image">
+                                <img src="./Assets/headlight-assemlby.png" alt="Headlight Assembly" />
+                            </div>
+                        </div>
+                        <div class="py-5 flex flex-col gap-2 items-center text-center">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
+                                Part</p>
+                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Headlight Assembly</h2>
+                            <a
+                                href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Headlight%20Assembly">
+                                <button
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Android Infotainment -->
+                    <div class="featured-product-card">
+                        <div class="relative">
+                            <div class="search-badge">#2 MOST SEARCHED</div>
+                            <div class="featured-product-image">
+                                <img src="./Assets/android-infotainment.png" alt="Android Infotainment" />
+                            </div>
+                        </div>
+                        <div class="py-5 flex flex-col gap-2 items-center text-center">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
+                                Part</p>
+                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Android Infotainment</h2>
+                            <a
+                                href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Android%20Infotainment">
+                                <button
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Front Bumper -->
+                    <div class="featured-product-card">
+                        <div class="relative">
+                            <div class="search-badge">#3 MOST SEARCHED</div>
+                            <div class="featured-product-image">
+                                <img src="./Assets/font-bumper.png" alt="Front Bumper" />
+                            </div>
+                        </div>
+                        <div class="py-5 flex flex-col gap-2 items-center text-center">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
+                                Part</p>
+                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Front Bumper</h2>
+                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Front%20Bumper">
+                                <button
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Dash Cam -->
+                    <div class="featured-product-card">
+                        <div class="relative">
+                            <div class="search-badge">#4 MOST SEARCHED</div>
+                            <div class="featured-product-image">
+                                <img src="./Assets/dash-cam.png" alt="Dash Cam" />
+                            </div>
+                        </div>
+                        <div class="py-5 flex flex-col gap-2 items-center text-center">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
+                                Part</p>
+                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Dash Cam</h2>
+                            <a href="https://wa.me/8615158939407?text=Hi,%20I%20want%20to%20order%20Dash%20Cam">
+                                <button
+                                    class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                                    Order Now
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="py-10 text-center border-t border-white/5 opacity-40">
+        <p class="text-[10px] font-black uppercase tracking-[1em]">Qazi Auto Parts • Global Excellence • 2026</p>
     </footer>
 
     <script>
-        // Brands Data
-        const brandsData = {
+        const data = {
             china: [
-                { name: "BYD", logo: "https://www.carlogos.org/car-logos/byd-logo.png" },
-                { name: "Geely", logo: "https://www.carlogos.org/car-logos/geely-logo.png" },
-                { name: "Chery", logo: "https://www.carlogos.org/car-logos/chery-logo.png" },
-                { name: "Haval", logo: "https://www.carlogos.org/car-logos/haval-logo.png" },
-                { name: "Changan", logo: "https://www.carlogos.org/car-logos/changan-logo.png" },
-                { name: "MG", logo: "https://www.carlogos.org/car-logos/mg-logo.png" },
-                { name: "GAC", logo: "https://www.carlogos.org/car-logos/gac-logo.png" },
-                { name: "Dongfeng", logo: "https://www.carlogos.org/car-logos/dongfeng-logo.png" },
-                { name: "Faw", logo: "https://www.carlogos.org/car-logos/faw-logo.png" },
-                { name: "Wuling", logo: "https://www.carlogos.org/car-logos/wuling-logo.png" }
+                { name: "BYD", img: "https://www.carlogos.org/car-logos/byd-logo.png" },
+                { name: "Geely", img: "https://www.carlogos.org/car-logos/geely-logo.png" },
+                { name: "Chery", img: "https://www.carlogos.org/car-logos/chery-logo.png" },
+                { name: "Haval", img: "https://www.carlogos.org/car-logos/haval-logo.png" },
+                { name: "Changan", img: "https://www.carlogos.org/car-logos/changan-logo.png" },
+                { name: "MG", img: "https://www.carlogos.org/car-logos/mg-logo.png" },
+                { name: "GAC", img: "https://www.carlogos.org/car-logos/gac-logo.png" },
+                { name: "Dongfeng", img: "https://www.carlogos.org/car-logos/dongfeng-logo.png" },
+                { name: "Faw", img: "https://www.carlogos.org/car-logos/faw-logo.png" },
+                { name: "Wuling", img: "https://www.carlogos.org/car-logos/wuling-logo.png" }
             ],
             usa: [
-                { name: "Tesla", logo: "https://www.carlogos.org/car-logos/tesla-logo.png" },
-                { name: "Ford", logo: "https://www.carlogos.org/car-logos/ford-logo.png" },
-                { name: "Chevrolet", logo: "https://www.carlogos.org/car-logos/chevrolet-logo.png" },
-                { name: "Jeep", logo: "https://www.carlogos.org/car-logos/jeep-logo.png" },
-                { name: "Cadillac", logo: "https://www.carlogos.org/car-logos/cadillac-logo.png" },
-                { name: "GMC", logo: "https://www.carlogos.org/car-logos/gmc-logo.png" },
-                { name: "Dodge", logo: "https://www.carlogos.org/car-logos/dodge-logo.png" },
-                { name: "Chrysler", logo: "https://www.carlogos.org/car-logos/chrysler-logo.png" },
-                { name: "RAM", logo: "https://www.carlogos.org/car-logos/ram-logo.png" },
-                { name: "Lincoln", logo: "https://www.carlogos.org/car-logos/lincoln-logo.png" }
+                { name: "Tesla", img: "https://www.carlogos.org/car-logos/tesla-logo.png" },
+                { name: "Ford", img: "https://www.carlogos.org/car-logos/ford-logo.png" },
+                { name: "Chevrolet", img: "https://www.carlogos.org/car-logos/chevrolet-logo.png" },
+                { name: "Jeep", img: "https://www.carlogos.org/car-logos/jeep-logo.png" },
+                { name: "Cadillac", img: "https://www.carlogos.org/car-logos/cadillac-logo.png" },
+                { name: "GMC", img: "https://www.carlogos.org/car-logos/gmc-logo.png" },
+                { name: "Dodge", img: "https://www.carlogos.org/car-logos/dodge-logo.png" },
+                { name: "Chrysler", img: "https://www.carlogos.org/car-logos/chrysler-logo.png" },
+                { name: "RAM", img: "https://www.carlogos.org/car-logos/ram-logo.png" },
+                { name: "Lincoln", img: "https://www.carlogos.org/car-logos/lincoln-logo.png" }
             ],
             japan: [
-                { name: "Toyota", logo: "https://www.carlogos.org/car-logos/toyota-logo.png" },
-                { name: "Honda", logo: "https://www.carlogos.org/car-logos/honda-logo.png" },
-                { name: "Nissan", logo: "https://www.carlogos.org/car-logos/nissan-logo.png" },
-                { name: "Mitsubishi", logo: "https://www.carlogos.org/car-logos/mitsubishi-logo.png" },
-                { name: "Mazda", logo: "https://www.carlogos.org/car-logos/mazda-logo.png" },
-                { name: "Suzuki", logo: "https://www.carlogos.org/car-logos/suzuki-logo.png" },
-                { name: "Subaru", logo: "https://www.carlogos.org/car-logos/subaru-logo.png" },
-                { name: "Lexus", logo: "https://www.carlogos.org/car-logos/lexus-logo.png" },
-                { name: "Isuzu", logo: "https://www.carlogos.org/car-logos/isuzu-logo.png" }
+                { name: "Toyota", img: "https://www.carlogos.org/car-logos/toyota-logo.png" },
+                { name: "Honda", img: "https://www.carlogos.org/car-logos/honda-logo.png" },
+                { name: "Nissan", img: "https://www.carlogos.org/car-logos/nissan-logo.png" },
+                { name: "Mitsubishi", img: "https://www.carlogos.org/car-logos/mitsubishi-logo.png" },
+                { name: "Mazda", img: "https://www.carlogos.org/car-logos/mazda-logo.png" },
+                { name: "Suzuki", img: "https://www.carlogos.org/car-logos/suzuki-logo.png" },
+                { name: "Subaru", img: "https://www.carlogos.org/car-logos/subaru-logo.png" },
+                { name: "Lexus", img: "https://www.carlogos.org/car-logos/lexus-logo.png" },
+                { name: "Isuzu", img: "https://www.carlogos.org/car-logos/isuzu-logo.png" }
             ],
             germany: [
-                { name: "Mercedes-Benz", logo: "https://www.carlogos.org/car-logos/mercedes-benz-logo.png" },
-                { name: "BMW", logo: "https://www.carlogos.org/car-logos/bmw-logo.png" },
-                { name: "Audi", logo: "https://www.carlogos.org/car-logos/audi-logo.png" },
-                { name: "Volkswagen", logo: "https://www.carlogos.org/car-logos/volkswagen-logo.png" },
-                { name: "Porsche", logo: "https://www.carlogos.org/car-logos/porsche-logo.png" },
-                { name: "Opel", logo: "https://www.carlogos.org/car-logos/opel-logo.png" }
+                { name: "Mercedes-Benz", img: "https://www.carlogos.org/car-logos/mercedes-benz-logo.png" },
+                { name: "BMW", img: "https://www.carlogos.org/car-logos/bmw-logo.png" },
+                { name: "Audi", img: "https://www.carlogos.org/car-logos/audi-logo.png" },
+                { name: "Volkswagen", img: "https://www.carlogos.org/car-logos/volkswagen-logo.png" },
+                { name: "Porsche", img: "https://www.carlogos.org/car-logos/porsche-logo.png" },
+                { name: "Opel", img: "https://www.carlogos.org/car-logos/opel-logo.png" }
             ],
             korea: [
-                { name: "Hyundai", logo: "https://www.carlogos.org/car-logos/hyundai-logo.png" },
-                { name: "Kia", logo: "https://www.carlogos.org/car-logos/kia-logo.png" },
-                { name: "SsangYong", logo: "https://www.carlogos.org/car-logos/ssangyong-logo.png" },
-                { name: "Daewoo", logo: "https://www.carlogos.org/car-logos/daewoo-logo.png" },
-                { name: "Genesis", logo: "https://www.carlogos.org/car-logos/genesis-logo.png" }
+                { name: "Hyundai", img: "https://www.carlogos.org/car-logos/hyundai-logo.png" },
+                { name: "Kia", img: "https://www.carlogos.org/car-logos/kia-logo.png" },
+                { name: "SsangYong", img: "https://www.carlogos.org/car-logos/ssangyong-logo.png" },
+                { name: "Daewoo", img: "https://www.carlogos.org/car-logos/daewoo-logo.png" },
+                { name: "Genesis", img: "https://www.carlogos.org/car-logos/genesis-logo.png" }
+            ],
+            france: [
+                { name: "Renault", img: "https://www.carlogos.org/car-logos/renault-logo.png" },
+                { name: "Peugeot", img: "https://www.carlogos.org/car-logos/peugeot-logo.png" },
+                { name: "Citroen", img: "https://www.carlogos.org/car-logos/citroen-logo.png" },
+                { name: "Bugatti", img: "https://www.carlogos.org/car-logos/bugatti-logo.png" }
+            ],
+            machinery: [
+                { name: "Caterpillar (CAT)", img: "./Assets/cat.png" },
+                { name: "Komatsu", img: "./Assets/komatsu.png" },
+                { name: "JCB Heavy", img: "./Assets/jcb.png" },
+                { name: "Sany Group", img: "./Assets/sany.png" },
+                { name: "Volvo", img: "./Assets/volvo.png" },
+                { name: "Hitachi", img: "./Assets/hitachi.png" },
+                { name: "Bobcat", img: "./Assets/bobcat.png" },
+                { name: "Doosan", img: "./Assets/doosan.png" },
             ]
         };
 
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function () {
-            // Load initial brands
-            filterBrands('china');
-
-            // Make all product cards visible immediately
-            document.querySelectorAll('.product-card, .catalog-card, .brand-card').forEach(card => {
-                card.classList.add('visible');
-            });
-        });
-
-        // Filter Brands
-        function filterBrands(country) {
-            // Update active filter button
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.closest('.filter-btn').classList.add('active');
-
-            // Get brands grid
-            const brandsGrid = document.getElementById('brandsGrid');
-            brandsGrid.innerHTML = '';
-
-            // Add brands
-            brandsData[country].forEach((brand, index) => {
-                const brandCard = document.createElement('div');
-                brandCard.className = 'brand-card visible';
-                brandCard.innerHTML = `
-                    <img src="${brand.logo}" alt="${brand.name}" class="h-12 object-contain mb-4" 
-                         onerror="this.src='https://via.placeholder.com/100x60?text=${brand.name}'">
-                    <p class="text-black font-bold text-sm text-center">${brand.name}</p>
-                `;
-                brandsGrid.appendChild(brandCard);
+        function updateBrands(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const grid = document.getElementById('brandGrid');
+            grid.innerHTML = "";
+            data[cat].forEach(b => {
+                grid.innerHTML += `
+                    <div class="logo-box animate-fadeIn">
+                        <img src="${b.img}" class="brand-logo" onerror="this.src='https://via.placeholder.com/100x60?text=${b.name}'">
+                        <p class="text-[11px] font-black uppercase text-black mt-4 text-center leading-tight tracking-tighter">${b.name}</p>
+                    </div>`;
             });
         }
 
-        // Show Page
+        // Page Navigation Functions
         function showPage(pageId) {
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
@@ -1113,48 +1015,61 @@
             // Show selected page
             document.getElementById(pageId + '-page').classList.add('active');
 
-            // Update navigation
-            updateNavigation(pageId);
+            // Update mobile navigation
+            updateMobileNav(pageId);
 
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Update Navigation
-        function updateNavigation(pageId) {
-            // Update desktop nav
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-
-            // Update mobile nav
+        function updateMobileNav(pageId) {
+            // Update mobile nav icons
             document.querySelectorAll('.nav-icon').forEach(icon => {
                 icon.classList.remove('active');
             });
 
+            // Set active icon based on page
             if (pageId === 'home') {
-                document.querySelector('.nav-link:nth-child(1)').classList.add('active');
                 document.querySelector('.nav-icon:nth-child(1)').classList.add('active');
-            } else if (pageId === 'catalog') {
-                document.querySelector('.nav-link:nth-child(4)').classList.add('active');
+            } else if (pageId === 'all-products') {
+                document.querySelector('.nav-icon:nth-child(2)').classList.add('active');
+            } else if (pageId === 'top-selling') {
+                document.querySelector('.nav-icon:nth-child(3)').classList.add('active');
+            } else if (pageId === 'most-searched') {
                 document.querySelector('.nav-icon:nth-child(4)').classList.add('active');
             }
         }
 
-        // Scroll to Section
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                const offset = 80;
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - offset;
+        // Initialize on page load
+        window.onload = () => {
+            updateBrands('china', document.querySelector('.filter-btn.active'));
+            showPage('home');
+        };
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
+        // Animation for product cards
+        const cards = document.querySelectorAll(".featured-product-card");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                        observer.unobserve(entry.target);
+                    }
                 });
+            },
+            {
+                threshold: 0.2,
             }
-        }
+        );
+
+        cards.forEach((card) => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+            card.style.transition = "all 0.5s ease";
+            observer.observe(card);
+        });
     </script>
 </body>
 
