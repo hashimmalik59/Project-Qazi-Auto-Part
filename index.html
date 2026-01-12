@@ -548,31 +548,33 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Product 1: Brake Pad -->
                     <div class="featured-product-card">
-                        <div class="featured-product-image">
-                            <img src="./Assets/break-pad.jpg" alt="Brake Pad" />
+                        <div class="relative">
+                            <div class="search-badge">🔍 SEARCHED</div>
+                            <div class="featured-product-image">
+                                <img src="./Assets/headlight.png" alt="Headlight Assembly" />
+                            </div>
                         </div>
                         <div class="py-5 flex flex-col gap-2 items-center text-center">
-                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
-                                Part</p>
-                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake Pad</h2>
-                            <button onclick="showOrderPopup('Brake Pad')"
-                                class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                Spare Part</p>
+                            <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Headlight</h2>
+                            <button onclick="showOrderPopup('Headlight Assembly')"
+                                class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                 Order Now
                             </button>
                         </div>
                     </div>
-
                     <!-- Product 2: Brake System -->
                     <div class="featured-product-card">
                         <div class="featured-product-image">
-                            <img src="./Assets/brake-system.jpg" alt="Brake System" />
+                            <img src="./Assets/grill.png" alt="Grill" />
                         </div>
                         <div class="py-5 flex flex-col gap-2 items-center text-center">
-                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
-                                Part</p>
-                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Brake System</h2>
-                            <button onclick="showOrderPopup('Brake System')"
-                                class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                Spare Part</p>
+                            <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Grill</h2>
+                            <button onclick="showOrderPopup('Oil Filter')"
+                                class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                 Order Now
                             </button>
                         </div>
@@ -581,14 +583,14 @@
                     <!-- Product 3: Fuel Pump -->
                     <div class="featured-product-card">
                         <div class="featured-product-image">
-                            <img src="./Assets/fuel-pump.jpg" alt="Fuel Pump" />
+                            <img src="./Assets/roof.png" alt="Roof" />
                         </div>
                         <div class="py-5 flex flex-col gap-2 items-center text-center">
-                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
-                                Part</p>
-                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Fuel Pump</h2>
-                            <button onclick="showOrderPopup('Fuel Pump')"
-                                class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                Spare Part</p>
+                            <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Roof</h2>
+                            <button onclick="showOrderPopup('Fuel Filter')"
+                                class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                 Order Now
                             </button>
                         </div>
@@ -597,27 +599,25 @@
                     <!-- Product 4: Suspension -->
                     <div class="featured-product-card">
                         <div class="featured-product-image">
-                            <img src="./Assets/suspension.png" alt="Suspension" />
+                            <img src="./Assets/quarter-panel.png" alt="Quarter Panel" />
                         </div>
                         <div class="py-5 flex flex-col gap-2 items-center text-center">
-                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine Spare
-                                Part</p>
-                            <h2 class="text-xl font-extrabold text-[#D4AF37] italic">Suspension</h2>
-                            <button onclick="showOrderPopup('Suspension')"
-                                class="bg-[#D4AF37] text-black font-extrabold px-6 py-2 italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
+                            <p class="text-[#D4AF37] text-xs font-bold uppercase tracking-tighter mb-1">Genuine
+                                Spare Part</p>
+                            <h2 class="text-lg font-extrabold text-[#D4AF37] italic">Quarter Panel</h2>
+                            <button onclick="showOrderPopup('Cabin Air Filter')"
+                                class="bg-[#D4AF37] text-black font-extrabold px-4 py-2 text-sm italic rounded uppercase tracking-tighter hover:bg-yellow-500 transition-all duration-300">
                                 Order Now
                             </button>
                         </div>
                     </div>
+                    <div class="text-center mt-12">
+                        <button onclick="showPage('all-products')"
+                            class="border-2 border-[#d4af37] text-[#d4af37] px-8 py-3 font-bold rounded-full hover:bg-[#d4af37] hover:text-black transition-all duration-300">
+                            View All Products <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
                 </div>
-
-                <div class="text-center mt-12">
-                    <button onclick="showPage('all-products')"
-                        class="border-2 border-[#d4af37] text-[#d4af37] px-8 py-3 font-bold rounded-full hover:bg-[#d4af37] hover:text-black transition-all duration-300">
-                        View All Products <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-            </div>
         </section>
 
         <section id="about"
@@ -1012,7 +1012,7 @@
                             <div class="relative">
                                 <div class="search-badge">🔍 SEARCHED</div>
                                 <div class="featured-product-image">
-                                    <img src="./Assets/headlight-assemlby.png" alt="Headlight Assembly" />
+                                    <img src="./Assets/headlight.png" alt="Headlight Assembly" />
                                 </div>
                             </div>
                             <div class="py-5 flex flex-col gap-2 items-center text-center">
